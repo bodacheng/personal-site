@@ -17,7 +17,7 @@ export const site = {
   initials: 'YN',
   title: '独立创作者与开发者',
   description: '专注于把复杂问题变成清晰、可靠、好用的数字产品。',
-  url: 'https://example.com',
+  url: 'https://personal-site.bodacheng.workers.dev',
   email: 'hello@example.com',
   location: 'Asia / Tokyo',
   availability: '开放合作',
@@ -64,6 +64,6 @@ export const site = {
     },
   ] satisfies Project[],
   links: [
-    { label: 'GitHub', href: 'https://github.com/' },
+    { label: 'GitHub', href: 'https://github.com/bodacheng' },
   ] satisfies Link[],
 } as const;
