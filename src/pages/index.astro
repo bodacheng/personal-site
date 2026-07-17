@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout>
+  <div id="top" class="page-grid">
+    <Header />
+
+    <main id="main">
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div class="hero-orbit" aria-hidden="true">
+          <span></span>
+        </div>
+        <p class="eyebrow">{site.hero.eyebrow}</p>
+        <h1 id="hero-title">
+          {site.hero.headline.split('\n').map((line) => <span>{line}</span>)}
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-intro">{site.hero.intro}</p>
+          <a class="round-link" href="#work" aria-label="查看项目">
+            <span>查看项目</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="signal-bar" aria-label="个人状态">
+        <div class="shell signal-grid">
+          <p><span>角色</span>{site.title}</p>
+          <p><span>位置</span>{site.location}</p>
+          <p><span>状态</span><i aria-hidden="true"></i>{site.availability}</p>
+        </div>
+      </section>
+
+      <section id="about" class="section shell about" aria-labelledby="about-title">
+        <div class="section-label">
+          <span>01</span>
+          <p>关于</p>
+        </div>
+        <div class="about-content">
+          <h2 id="about-title">认真做事，<br />也认真理解为什么。</h2>
+          <div class="about-copy">
+            {site.about.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+      </section>
+
+      <section class="principles shell" aria-label="工作原则">
+        {site.principles.map((principle) => (
+          <article>
+            <span>{principle.number}</span>
+            <h3>{principle.title}</h3>
+            <p>{principle.text}</p>
+          </article>
+        ))}
+      </section>
+
+      <section id="work" class="section work" aria-labelledby="work-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div class="section-label section-label--dark">
+              <span>02</span>
+              <p>选择的项目</p>
+            </div>
+            <h2 id="work-title">一些正在发生的事情。</h2>
+          </div>
+          <div class="project-grid">
+            {site.projects.map((project, index) => (
+              <ProjectCard project={project} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div class="shell contact-grid">
+          <div class="section-label section-label--dark">
+            <span>03</span>
+            <p>联系</p>
+          </div>
+          <div>
+            <p class="contact-kicker">有一个想法，或者只是想打个招呼？</p>
+            <h2 id="contact-title">一起聊聊。</h2>
+            <a class="email-link" href={`mailto:${site.email}`}>{site.email}<span>↗</span></a>
+            <div class="social-links" aria-label="社交链接">
+              {site.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noreferrer">{link.label} ↗</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>
