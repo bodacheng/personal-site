@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { site } from '../../config/site';
+---
+
+<BaseLayout title={`隐私政策｜${site.name}`} description="查看 HOTARU STUDIO 各项产品的隐私政策。">
+  <div id="top" class="privacy-hub">
+    <Header context="privacy" />
+    <main id="main">
+      <section class="privacy-hub-hero">
+        <div class="shell">
+          <p>PRIVACY CENTER</p>
+          <h1>透明说明每件产品<br />如何处理信息。</h1>
+          <span>每项产品的功能与数据流不同，因此分别提供对应政策。</span>
+        </div>
+      </section>
+      <section class="privacy-list">
+        <div class="shell">
+          <a href={site.game.privacyPath}>
+            <span>01 · GAME</span>
+            <img src="/game/app-icon.jpg" alt="" width="72" height="72" />
+            <div><h2>{site.game.name}</h2><p>游戏账户、设备信息、购买、广告及支持相关说明。</p></div>
+            <strong>查看政策 →</strong>
+          </a>
+          <a href={site.fxtrade.privacyPath}>
+            <span>02 · FINANCE TOOL</span>
+            <img src="/fxtrade/app-icon.png" alt="" width="72" height="72" />
+            <div><h2>{site.fxtrade.name}</h2><p>AI 分析输入、市场数据、本地存储及服务提供商相关说明。</p></div>
+            <strong>查看政策 →</strong>
+          </a>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

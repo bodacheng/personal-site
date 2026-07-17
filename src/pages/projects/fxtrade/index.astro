@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import { site } from '../../../config/site';
+---
+
+<BaseLayout
+  title={`${site.fxtrade.name}（FXTrade）｜${site.name}`}
+  description={site.fxtrade.description}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: site.fxtrade.name,
+    alternateName: site.fxtrade.projectName,
+    description: site.fxtrade.description,
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'iOS',
+    author: { '@type': 'Organization', name: site.name },
+  }}
+>
+  <div id="top" class="fx-page">
+    <Header context="fxtrade" />
+    <main id="main">
+      <section class="fx-hero" aria-labelledby="fx-title">
+        <div class="fx-grid-lines" aria-hidden="true"></div>
+        <div class="shell fx-hero-inner">
+          <div class="fx-copy">
+            <div class="fx-app-lockup">
+              <img src="/fxtrade/app-icon.png" alt="USD/JPY Advice 应用图标" width="112" height="112" />
+              <p><span>FXTRADE PROJECT</span><strong>iOS · COMING SOON</strong></p>
+            </div>
+            <p class="fx-kicker">AI DECISION SUPPORT FOR USD/JPY</p>
+            <h1 id="fx-title">USD/JPY<br /><em>Advice</em></h1>
+            <p class="fx-lede">把实时行情、技术指标、持仓和风险条件放在同一个判断画面里。AI 分析给出结构化参考，但最终决定始终由你掌握。</p>
+            <div class="fx-availability"><span>APP STORE</span><strong>准备提交 · 尚未上线</strong></div>
+          </div>
+          <div class="fx-phones" aria-label="应用界面预览">
+            <figure class="fx-phone fx-phone--main"><img src="/fxtrade/screen-overview-zh.png" alt="实时行情、趋势指标和资金输入界面" width="1242" height="2688" /></figure>
+            <figure class="fx-phone fx-phone--side"><img src="/fxtrade/screen-advice-zh.png" alt="AI 交易建议与风险说明界面" width="1242" height="2688" /></figure>
+            <div class="fx-data-chip fx-data-chip--trend"><span>TREND</span><strong>RSI · ATR</strong></div>
+            <div class="fx-data-chip fx-data-chip--risk"><span>RISK</span><strong>VISIBLE</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="fx-ticker" aria-label="主要功能">
+        <div class="shell"><span>REAL-TIME RATE</span><span>1M · 5M · 15M CANDLES</span><span>POSITION INPUT</span><span>AI ANALYSIS</span></div>
+      </section>
+
+      <section class="fx-overview" aria-labelledby="fx-overview-title">
+        <div class="shell fx-overview-grid">
+          <div>
+            <p class="fx-section-index">01 / ONE DECISION VIEW</p>
+            <h2 id="fx-overview-title">看清行情，也看清自己的风险。</h2>
+          </div>
+          <p>USD/JPY 的价格会自动更新。趋势分数、RSI、ATR、资金与当前净持仓被一起纳入分析，减少在多个画面之间反复切换。</p>
+        </div>
+        <div class="shell fx-feature-grid">
+          <article><span>01</span><h3>实时行情</h3><p>显示 USD/JPY 实时报价，以及 1 分、5 分、15 分蜡烛图。</p></article>
+          <article><span>02</span><h3>技术指标</h3><p>用趋势图、趋势分数、RSI 与 ATR 整理方向和波动性。</p></article>
+          <article><span>03</span><h3>仓位条件</h3><p>输入本金、净持仓数量与建仓价，让建议对应你的实际条件。</p></article>
+          <article><span>04</span><h3>两种模式</h3><p>“谨慎”和“积极”两种分析方式，清楚显示不确定性。</p></article>
+        </div>
+      </section>
+
+      <section class="fx-interface" aria-labelledby="fx-interface-title">
+        <div class="shell fx-interface-grid">
+          <figure>
+            <img src="/fxtrade/screen-overview-ja.png" alt="日语版 USD/JPY Advice 界面" width="1242" height="2688" loading="lazy" />
+          </figure>
+          <div>
+            <p class="fx-section-index">02 / BUILT FOR CLARITY</p>
+            <h2 id="fx-interface-title">建议不是一个方向箭头。</h2>
+            <p>每次分析同时给出参考方向、建仓数量、置信度、判断理由、预计保证金使用率与风险提示。支持日语、英语和简体中文。</p>
+            <ul>
+              <li><span>MODE</span>谨慎 / 积极</li>
+              <li><span>OUTPUT</span>方向 · 数量 · 置信度</li>
+              <li><span>LANGUAGE</span>日本語 · English · 简体中文</li>
+            </ul>
+          </div>
+          <figure>
+            <img src="/fxtrade/screen-overview-en.png" alt="英语版 USD/JPY Advice 界面" width="1242" height="2688" loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="fx-disclaimer" aria-labelledby="risk-title">
+        <div class="shell disclaimer-grid">
+          <p class="fx-section-index">03 / IMPORTANT</p>
+          <div>
+            <h2 id="risk-title">这是决策辅助工具，<br />不是交易执行服务。</h2>
+            <p>本应用不连接券商账户、不代替用户下单，也不保证收益。AI 分析和市场数据可能延迟、出错、中断或缺失，显示内容不构成针对个人的投资建议。外汇保证金交易存在重大亏损风险，请独立判断并自行承担结果。</p>
+            <a href={site.fxtrade.privacyPath}>查看 FXTrade 隐私政策 <span>→</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

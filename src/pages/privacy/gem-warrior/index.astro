@@ -1,0 +1,117 @@
+---
+import PrivacyLayout from '../../../components/PrivacyLayout.astro';
+import { site } from '../../../config/site';
+---
+
+<PrivacyLayout product={site.game.name} summary="《魔晶闘士-無限格闘戦争》隐私政策。" backHref={site.game.path}>
+  <article id="zh" class="policy-language" lang="zh-CN">
+    <p class="policy-label">简体中文</p>
+    <h2>隐私政策</h2>
+    <p>HOTARU STUDIO（运营主体：{site.legalName}，以下简称“我们”）重视您的隐私。本政策说明《魔晶闘士-無限格闘戦争》（以下简称“本游戏”）在您游玩、购买或联系支持时可能如何处理信息。具体处理项目会因平台、地区、游戏版本及您是否使用相关功能而不同。</p>
+
+    <h3>1. 我们可能处理的信息</h3>
+    <ul>
+      <li><strong>账户与转移信息：</strong>当您使用游戏账户转移、恢复或支持功能时，可能提供电子邮件地址及转移所需信息。</li>
+      <li><strong>设备与游戏标识：</strong>操作系统、应用版本、设备类型，以及由 Unity 提供的设备唯一标识或内部玩家 ID，用于识别游戏账户、登录、保存进度和防止滥用。</li>
+      <li><strong>游戏与诊断数据：</strong>游玩进度、功能使用情况、崩溃或错误信息、网络与性能数据。</li>
+      <li><strong>购买信息：</strong>商品、交易状态、订单或收据标识。支付卡号等付款凭证由 Apple 或 Google 处理，我们不会直接取得完整付款资料。</li>
+      <li><strong>广告数据：</strong>在显示广告的版本中，广告展示、点击或互动信息，以及平台允许的广告标识。是否用于个性化广告或跨应用追踪取决于您的平台权限、地区与当前配置。</li>
+      <li><strong>支持信息：</strong>您发送给我们的邮件、问题描述和为解决问题提供的附件。</li>
+    </ul>
+
+    <h3>2. 使用目的</h3>
+    <p>我们使用上述信息来提供和维护游戏、保存或转移进度、验证购买、提供客户支持、分析稳定性与玩法、展示和衡量广告、防止作弊和欺诈，以及遵守法律义务。</p>
+
+    <h3>3. 服务提供商与共享</h3>
+    <p>为了运行本游戏，信息可能由受托服务商处理，包括 PlayFab 等游戏后端、Apple App Store、Google Play、Unity 相关服务及游戏中启用的广告或分析合作方。我们不会出售您的个人信息。我们也可能在法律要求、保护用户与服务安全，或公司重组/业务转让所必要的范围内披露信息。</p>
+
+    <h3>4. 平台差异与您的选择</h3>
+    <p>App Store 与 Google Play 中的“应用隐私”或“数据安全”披露针对各平台当前发布版本，可能因 SDK、权限与功能不同而存在差异。您可以通过系统隐私设置限制广告追踪、重置广告标识，或停止使用相关功能。</p>
+
+    <h3>5. 保存、安全与跨境处理</h3>
+    <p>我们仅在实现上述目的、维护游戏账户、履行法律义务或解决争议所需期间保存信息。数据可能在日本以外由服务商处理。我们采用合理的技术和组织措施保护信息，但任何网络传输或存储都无法保证绝对安全。</p>
+
+    <h3>6. 儿童</h3>
+    <p>本游戏不面向 13 岁以下儿童。若您认为儿童在未经监护人同意的情况下向我们提供了个人信息，请联系我们。</p>
+
+    <h3>7. 您的权利与删除请求</h3>
+    <p>根据适用法律，您可以请求访问、更正或删除与您有关的信息，或反对、限制特定处理。为定位账户并防止误删，我们可能需要验证请求。请发送邮件至 <a href={`mailto:${site.gameSupportEmail}`}>{site.gameSupportEmail}</a>。</p>
+
+    <h3>8. 政策更新与联系</h3>
+    <p>我们可能在功能、服务商或法律要求变化时更新本政策，并在本页公布新版本与生效日期。如有隐私问题，请联系 <a href={`mailto:${site.gameSupportEmail}`}>{site.gameSupportEmail}</a>。</p>
+  </article>
+
+  <article id="ja" class="policy-language" lang="ja">
+    <p class="policy-label">日本語</p>
+    <h2>プライバシーポリシー</h2>
+    <p>HOTARU STUDIO（運営主体：{site.legalName}、以下「当社」）は、ユーザーのプライバシーを尊重します。本ポリシーは、『魔晶闘士-無限格闘戦争』（以下「本ゲーム」）の利用、購入、サポートへのお問い合わせに伴う情報の取扱いを説明します。実際に処理される項目は、プラットフォーム、地域、バージョンおよび利用機能により異なります。</p>
+
+    <h3>1. 取り扱う可能性のある情報</h3>
+    <ul>
+      <li><strong>アカウント・引継ぎ情報：</strong>引継ぎ、復旧、サポートを利用する際のメールアドレスおよび必要な確認情報。</li>
+      <li><strong>端末・ゲーム識別子：</strong>OS、アプリバージョン、端末種別、Unity が提供する端末固有識別子または内部プレイヤー ID。</li>
+      <li><strong>プレイ・診断情報：</strong>進行状況、機能利用、クラッシュ、エラー、通信およびパフォーマンス情報。</li>
+      <li><strong>購入情報：</strong>商品、取引状態、注文またはレシート識別子。カード番号等は Apple または Google が処理し、当社は完全な決済情報を取得しません。</li>
+      <li><strong>広告情報：</strong>広告を含むバージョンでは、表示、クリック、操作情報および許可された広告識別子。パーソナライズやトラッキングは、同意、地域、設定に従います。</li>
+      <li><strong>サポート情報：</strong>お問い合わせ内容、メールおよび添付資料。</li>
+    </ul>
+
+    <h3>2. 利用目的</h3>
+    <p>ゲームの提供・保守、進行状況の保存・引継ぎ、購入確認、サポート、安定性とゲームプレイの分析、広告の配信・測定、不正行為や詐欺の防止、法令遵守のために使用します。</p>
+
+    <h3>3. 委託先および共有</h3>
+    <p>PlayFab 等のゲームバックエンド、Apple App Store、Google Play、Unity 関連サービス、ならびに有効化された広告・分析事業者が情報を処理する場合があります。当社は個人情報を販売しません。法令、安全保護、組織再編または事業譲渡に必要な場合に限り開示することがあります。</p>
+
+    <h3>4. プラットフォームによる差異と選択</h3>
+    <p>App Store と Google Play のプライバシー表示は各プラットフォームの現行ビルドを対象とし、SDK、権限、機能の違いにより内容が異なる場合があります。端末設定から広告トラッキングの制限や広告識別子のリセットができます。</p>
+
+    <h3>5. 保存、安全管理、国外処理</h3>
+    <p>目的達成、アカウント維持、法的義務または紛争対応に必要な期間のみ保存します。情報は日本国外で処理される場合があります。合理的な安全措置を講じますが、完全な安全を保証するものではありません。</p>
+
+    <h3>6. 子どもの利用</h3>
+    <p>本ゲームは13歳未満の子どもを対象としていません。保護者の同意なく情報が提供されたと思われる場合はご連絡ください。</p>
+
+    <h3>7. 権利・削除依頼</h3>
+    <p>適用法令に基づき、アクセス、訂正、削除、処理の制限等を請求できます。誤削除防止のため確認をお願いする場合があります。<a href={`mailto:${site.gameSupportEmail}`}>{site.gameSupportEmail}</a> までご連絡ください。</p>
+
+    <h3>8. 更新・お問い合わせ</h3>
+    <p>機能、委託先または法令の変更に応じて本ポリシーを更新し、本ページに施行日を表示します。お問い合わせ先：<a href={`mailto:${site.gameSupportEmail}`}>{site.gameSupportEmail}</a></p>
+  </article>
+
+  <article id="en" class="policy-language" lang="en">
+    <p class="policy-label">English</p>
+    <h2>Privacy Policy</h2>
+    <p>HOTARU STUDIO, operated by {site.legalName} (“we”), respects your privacy. This policy explains how information may be handled when you play, make purchases in, or contact support about Gem Warrior – Mugen Combat War (“the Game”). The data actually processed depends on your platform, region, Game version, and the features you use.</p>
+
+    <h3>1. Information we may process</h3>
+    <ul>
+      <li><strong>Account and transfer data:</strong> an email address and verification details when you request account transfer, recovery, or support.</li>
+      <li><strong>Device and game identifiers:</strong> operating system, app version, device type, and a Unity-provided device identifier or internal player ID.</li>
+      <li><strong>Gameplay and diagnostics:</strong> progress, feature usage, crashes, errors, network, and performance data.</li>
+      <li><strong>Purchase data:</strong> product, transaction status, order, or receipt identifiers. Apple or Google processes payment credentials; we do not receive full card details.</li>
+      <li><strong>Advertising data:</strong> in versions that display ads, impressions, clicks, interactions, and permitted advertising identifiers. Personalization or cross-app tracking depends on consent, region, and current configuration.</li>
+      <li><strong>Support data:</strong> messages, issue descriptions, and attachments you send us.</li>
+    </ul>
+
+    <h3>2. Purposes</h3>
+    <p>We use information to provide and maintain the Game, save or transfer progress, validate purchases, provide support, analyze stability and gameplay, deliver and measure advertising, prevent cheating and fraud, and comply with law.</p>
+
+    <h3>3. Service providers and disclosure</h3>
+    <p>Information may be processed by service providers such as PlayFab game backend services, Apple App Store, Google Play, Unity-related services, and advertising or analytics partners enabled in the Game. We do not sell personal information. We may disclose information when legally required, to protect users and the service, or as necessary for a reorganization or business transfer.</p>
+
+    <h3>4. Platform differences and choices</h3>
+    <p>App Store privacy and Google Play Data safety disclosures describe the current build on each platform and can differ because of SDKs, permissions, or features. You can use system privacy settings to limit ad tracking or reset advertising identifiers.</p>
+
+    <h3>5. Retention, security, and international processing</h3>
+    <p>We retain information only as needed for the purposes above, account continuity, legal obligations, or disputes. Providers may process data outside Japan. We use reasonable safeguards, but no transmission or storage method is completely secure.</p>
+
+    <h3>6. Children</h3>
+    <p>The Game is not directed to children under 13. Contact us if you believe a child submitted personal information without appropriate guardian consent.</p>
+
+    <h3>7. Your rights and deletion</h3>
+    <p>Depending on applicable law, you may request access, correction, deletion, objection, or restriction. We may verify a request to locate the account and prevent unauthorized deletion. Email <a href={`mailto:${site.gameSupportEmail}`}>{site.gameSupportEmail}</a>.</p>
+
+    <h3>8. Updates and contact</h3>
+    <p>We may update this policy when features, providers, or legal requirements change. The effective date will be shown here. Privacy contact: <a href={`mailto:${site.gameSupportEmail}`}>{site.gameSupportEmail}</a>.</p>
+  </article>
+</PrivacyLayout>

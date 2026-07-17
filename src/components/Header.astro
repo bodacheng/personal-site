@@ -1,21 +1,29 @@
 ---
 import { site } from '../config/site';
+
+interface Props {
+  context?: 'home' | 'game' | 'fxtrade' | 'privacy';
+}
+
+const { context = 'home' } = Astro.props;
+const isHome = context === 'home';
 ---
 
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="brand" href="#top" aria-label={`${site.name} 首页`}>
-      <img src="/game/app-icon.jpg" alt="" width="48" height="48" />
+    <a class="brand studio-brand" href="/" aria-label={`${site.name} 首页`}>
+      <span class="studio-mark" aria-hidden="true">H<span>S</span></span>
       <span>
-        <strong>{site.shortName}</strong>
-        <small>{site.developer}</small>
+        <strong>{site.name}</strong>
+        <small>INDEPENDENT PRODUCTS</small>
       </span>
     </a>
 
     <nav aria-label="主要导航">
-      <a href="#gameplay">玩法</a>
-      <a href="#gallery">战斗画面</a>
-      <a class="nav-cta" href="#download">免费下载</a>
+      <a href={isHome ? '#works' : '/#works'}>作品</a>
+      <a href={isHome ? '#studio' : '/#studio'}>关于</a>
+      <a href="/privacy/">隐私政策</a>
+      <a class="nav-cta" href={isHome ? '#contact' : '/#contact'}>联系</a>
     </nav>
   </div>
 </header>

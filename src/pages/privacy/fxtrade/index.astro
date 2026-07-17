@@ -1,0 +1,129 @@
+---
+import PrivacyLayout from '../../../components/PrivacyLayout.astro';
+import { site } from '../../../config/site';
+---
+
+<PrivacyLayout product={`${site.fxtrade.name}（FXTrade）`} summary="USD/JPY Advice（FXTrade）隐私政策。" backHref={site.fxtrade.path}>
+  <article id="zh" class="policy-language" lang="zh-CN">
+    <p class="policy-label">简体中文</p>
+    <h2>隐私政策</h2>
+    <p>HOTARU STUDIO（运营主体：{site.legalName}，以下简称“我们”）重视您的隐私。本政策说明 USD/JPY Advice（开发项目名“FXTrade”，以下简称“本应用”）在提供市场信息和 AI 决策辅助时如何处理数据。</p>
+
+    <h3>1. 本应用不做什么</h3>
+    <p>本应用不要求创建账户，不连接证券公司或外汇经纪商账户，不收集券商登录凭证，不代表用户下单或自动交易，也不保证任何投资收益。应用内分析仅供信息整理与决策参考，不构成针对个人的投资建议。</p>
+
+    <h3>2. 本地保存的信息</h3>
+    <ul>
+      <li><strong>语言偏好：</strong>您选择的界面语言会保存在设备上。</li>
+      <li><strong>公开规则缓存：</strong>为提高可用性，应用可能在设备上缓存公开发布的外汇保证金规则。</li>
+      <li><strong>分析输入：</strong>您输入的本金（JPY）、净持仓数量与建仓价用于当前分析。应用不会将这些字段作为用户档案或交易历史永久保存在本地。</li>
+    </ul>
+
+    <h3>3. AI 分析时发送的数据</h3>
+    <p>只有在您请求 AI 分析时，本应用才会通过 HTTPS 向由我们管理、托管在 Microsoft Azure 的中继服务发送：您输入的本金、净持仓数量和建仓价（如有）；当前 USD/JPY 报价及近期蜡烛图；趋势分数、RSI、ATR；分析模式、界面语言；以及已同步的公开保证金规则。中继服务会将生成分析所需的内容发送给 OpenAI API。</p>
+    <p>我们的实现对 OpenAI API 请求设置 <code>store: false</code>，要求不将响应内容用于 API 端的持久化存储。本应用和中继服务不会有意建立包含这些分析输入或输出的长期数据库。Azure、OpenAI 及网络服务仍可能为了安全、滥用防护、诊断和履行法律义务而处理或保留有限的运行日志，具体依其政策和适用条款。</p>
+
+    <h3>4. 市场数据</h3>
+    <p>USD/JPY 报价与蜡烛图通过我们的 Azure 中继从 Twelve Data 等市场数据提供商取得。对市场数据服务的请求包含交易品种、时间周期和所需数据量，不包含您输入的本金、持仓或建仓价。市场数据可能延迟、出错、中断或缺失。</p>
+
+    <h3>5. 技术与运行数据</h3>
+    <p>在网络请求过程中，Azure 及相关托管或 API 服务可能自动处理 IP 地址、请求时间、网络状态、错误信息和安全日志。这些信息用于传输、维护、安全防护和故障诊断。我们不在本应用中使用广告 SDK，不出售个人信息，也不使用这些数据进行跨应用追踪。</p>
+
+    <h3>6. 处理依据、共享与跨境传输</h3>
+    <p>我们仅为提供您请求的功能、保护服务安全、排查问题及遵守法律而处理数据。必要数据会提供给代表我们处理的 Microsoft Azure、OpenAI 和 Twelve Data。由于这些服务在多个国家或地区运营，数据可能被跨境处理。我们会根据适用法律采取合理的合同、技术和组织措施。</p>
+
+    <h3>7. 保存期限与安全</h3>
+    <p>语言偏好和公开规则缓存会保留在设备上，直到您更改设置、清除应用数据或卸载应用。分析内容按请求即时处理，我们不会有意长期保存；服务提供商的有限安全或诊断日志可能按其必要期限保留。所有应用请求均使用 HTTPS，但任何网络或存储方式都无法保证绝对安全。</p>
+
+    <h3>8. 您的选择与权利</h3>
+    <p>您可以不输入持仓或建仓价，也可以不使用 AI 分析功能。卸载应用可删除本地偏好和缓存。根据适用法律，您可以请求访问、删除、限制或反对我们控制的数据处理；由于本应用没有账户，我们可能无法把去标识化的运行日志与特定用户对应。</p>
+
+    <h3>9. 儿童与政策更新</h3>
+    <p>本应用面向具备相应金融交易判断能力和法定资格的成年人，不面向儿童。我们可能因功能、服务商或法律变化更新本政策，并在本页更新生效日期。</p>
+
+    <h3>10. 联系方式</h3>
+    <p>隐私问题或权利请求请发送至 <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>。</p>
+  </article>
+
+  <article id="ja" class="policy-language" lang="ja">
+    <p class="policy-label">日本語</p>
+    <h2>プライバシーポリシー</h2>
+    <p>HOTARU STUDIO（運営主体：{site.legalName}、以下「当社」）はプライバシーを尊重します。本ポリシーは、USD/JPY Advice（開発プロジェクト名「FXTrade」、以下「本アプリ」）が市場情報および AI 意思決定支援を提供する際のデータ取扱いを説明します。</p>
+
+    <h3>1. 本アプリが行わないこと</h3>
+    <p>アカウント作成は不要です。証券会社・FX業者の口座接続、ログイン情報の収集、発注、取引の代行、自動売買は行いません。利益を保証せず、表示内容は個別の投資助言ではありません。</p>
+
+    <h3>2. 端末内に保存する情報</h3>
+    <ul>
+      <li><strong>言語設定：</strong>選択した表示言語を端末に保存します。</li>
+      <li><strong>公開ルールのキャッシュ：</strong>利便性のため、公開されているFX証拠金ルールを端末に一時保存する場合があります。</li>
+      <li><strong>分析入力：</strong>入力した元本（JPY）、ネット建玉数量、建値は現在の分析に使用されます。ユーザープロフィールや取引履歴として端末に恒久保存しません。</li>
+    </ul>
+
+    <h3>3. AI分析時に送信するデータ</h3>
+    <p>AI分析を依頼した場合に限り、HTTPS により当社管理の Microsoft Azure 中継サービスへ、元本、ネット建玉数量、建値（入力時）、現在の USD/JPY レート、直近のローソク足、トレンドスコア、RSI、ATR、分析モード、言語および公開証拠金ルールを送信します。中継サービスは、分析生成に必要な内容を OpenAI API へ送信します。</p>
+    <p>OpenAI API リクエストには <code>store: false</code> を設定しています。本アプリおよび中継サービスは、分析の入力・出力を長期データベースとして意図的に保存しません。ただし Azure、OpenAI 等は、セキュリティ、不正利用防止、診断、法令対応のため限定的な運用ログを各社の方針に従って処理・保持する場合があります。</p>
+
+    <h3>4. 市場データ</h3>
+    <p>USD/JPY レートとローソク足は、Azure 中継を介して Twelve Data 等から取得します。市場データのリクエストには通貨ペア、時間足、取得件数が含まれますが、元本、建玉、建値は含まれません。市場データには遅延、誤り、中断、欠落が生じる場合があります。</p>
+
+    <h3>5. 技術・運用データ</h3>
+    <p>通信時に Azure、ホスティング、API 事業者が IP アドレス、日時、通信状態、エラーおよびセキュリティログを自動処理する場合があります。目的は通信、保守、安全対策、障害調査です。本アプリは広告 SDK を使用せず、個人情報を販売せず、アプリ横断トラッキングを行いません。</p>
+
+    <h3>6. 目的、委託先、国外処理</h3>
+    <p>依頼された機能の提供、サービス保護、問題調査、法令遵守のためにのみ処理します。必要なデータは Microsoft Azure、OpenAI、Twelve Data により処理されます。各社は複数の国・地域で運営しているため、国外で処理される場合があります。当社は適用法令に従い合理的な措置を講じます。</p>
+
+    <h3>7. 保存期間と安全管理</h3>
+    <p>言語設定と公開ルールのキャッシュは、設定変更、アプリデータ削除またはアンインストールまで端末に残ります。分析内容はリクエストごとに処理し、当社は意図的に長期保存しません。限定的な安全・診断ログは必要期間保持される場合があります。通信には HTTPS を使用しますが、完全な安全を保証するものではありません。</p>
+
+    <h3>8. 選択と権利</h3>
+    <p>建玉や建値を入力せず、AI分析を利用しない選択ができます。アンインストールにより端末内設定とキャッシュを削除できます。適用法令に基づき、当社が管理するデータへのアクセス、削除、制限、異議申立てを請求できます。アカウントがないため、匿名化された運用ログを特定ユーザーに結び付けられない場合があります。</p>
+
+    <h3>9. 子ども・更新</h3>
+    <p>本アプリは、金融取引について判断できる法定資格を有する成人向けであり、子どもを対象としません。機能、委託先、法令の変更に応じて本ポリシーと施行日を更新する場合があります。</p>
+
+    <h3>10. お問い合わせ</h3>
+    <p>プライバシーに関するご質問・権利行使：<a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>
+  </article>
+
+  <article id="en" class="policy-language" lang="en">
+    <p class="policy-label">English</p>
+    <h2>Privacy Policy</h2>
+    <p>HOTARU STUDIO, operated by {site.legalName} (“we”), respects your privacy. This policy explains how USD/JPY Advice (development project name “FXTrade,” the “App”) handles data while providing market information and AI decision support.</p>
+
+    <h3>1. What the App does not do</h3>
+    <p>The App does not require an account, connect to a broker account, collect broker credentials, place orders, trade on your behalf, or provide automated trading. It does not guarantee profit, and its output is not personalized investment advice.</p>
+
+    <h3>2. Information stored on your device</h3>
+    <ul>
+      <li><strong>Language preference:</strong> your selected display language is stored locally.</li>
+      <li><strong>Public rules cache:</strong> the App may cache publicly available FX margin rules for reliability.</li>
+      <li><strong>Analysis inputs:</strong> principal in JPY, net position size, and entry price are used for the current analysis. The App does not permanently store them as a user profile or trading history.</li>
+    </ul>
+
+    <h3>3. Data sent for AI analysis</h3>
+    <p>Only when you request AI analysis, the App sends over HTTPS to our relay hosted on Microsoft Azure: the principal, net position, and entry price you provided (if any); current USD/JPY quote and recent candles; trend score, RSI, and ATR; analysis mode and language; and synchronized public margin rules. The relay sends content needed to generate the analysis to the OpenAI API.</p>
+    <p>Our OpenAI API request sets <code>store: false</code>. The App and relay do not intentionally create a long-term database of analysis inputs or outputs. Azure, OpenAI, and network providers may still process or retain limited operational logs for security, abuse prevention, diagnostics, and legal obligations under their policies and applicable terms.</p>
+
+    <h3>4. Market data</h3>
+    <p>USD/JPY quotes and candles are obtained through our Azure relay from market-data providers such as Twelve Data. Requests to the market-data service include the symbol, interval, and output size, but not your principal, position, or entry price. Market data may be delayed, inaccurate, interrupted, or incomplete.</p>
+
+    <h3>5. Technical and operational data</h3>
+    <p>During network requests, Azure and relevant hosting or API providers may automatically process IP address, request time, network status, error information, and security logs. This supports transmission, maintenance, security, and diagnostics. The App does not use advertising SDKs, sell personal information, or perform cross-app tracking.</p>
+
+    <h3>6. Purposes, providers, and international processing</h3>
+    <p>We process data only to provide requested features, protect the service, investigate problems, and comply with law. Necessary data is processed by Microsoft Azure, OpenAI, and Twelve Data. Because these providers operate across jurisdictions, data may be processed outside Japan. We apply reasonable contractual, technical, and organizational measures as required by applicable law.</p>
+
+    <h3>7. Retention and security</h3>
+    <p>Language settings and public-rule caches remain on the device until changed, app data is cleared, or the App is uninstalled. Analysis content is processed per request and is not intentionally retained long-term by us. Providers may retain limited security or diagnostic logs for necessary periods. Requests use HTTPS, but no network or storage method is completely secure.</p>
+
+    <h3>8. Your choices and rights</h3>
+    <p>You may omit position or entry-price inputs and may choose not to use AI analysis. Uninstalling removes local preferences and caches. Depending on applicable law, you may request access, deletion, restriction, or objection regarding data we control. Because the App has no accounts, we may be unable to associate de-identified operational logs with a particular user.</p>
+
+    <h3>9. Children and updates</h3>
+    <p>The App is intended for adults with the legal capacity to make financial trading decisions and is not directed to children. We may update this policy and its effective date when features, providers, or legal requirements change.</p>
+
+    <h3>10. Contact</h3>
+    <p>For privacy questions or rights requests, email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+  </article>
+</PrivacyLayout>

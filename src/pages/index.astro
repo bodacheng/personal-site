@@ -3,203 +3,117 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { site } from '../config/site';
-
-const storeLinks = [
-  {
-    href: site.iosUrl,
-    label: '从 App Store 下载',
-    image: '/game/app-store-badge.svg',
-    className: 'store-badge store-badge--apple',
-  },
-  {
-    href: site.androidUrl,
-    label: '从 Google Play 下载',
-    image: '/game/google-play-badge.png',
-    className: 'store-badge store-badge--google',
-  },
-];
 ---
 
 <BaseLayout>
-  <div id="top" class="page-grid">
-    <Header />
+  <div id="top" class="studio-home">
+    <Header context="home" />
 
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-grid-glow" aria-hidden="true"></div>
-        <div class="shell hero-inner">
-          <div class="hero-copy">
-            <div class="game-lockup">
-              <img src="/game/app-icon.jpg" alt="魔晶闘士游戏图标" width="112" height="112" />
-              <p>
-                <span>HOTARU STUDIO PRESENTS</span>
-                <strong>PHYSICS FIGHTING × SKILL BUILD</strong>
-              </p>
-            </div>
-
-            <p class="hero-kicker">GEM WARRIOR · MUGEN COMBAT WAR</p>
-            <h1 id="hero-title">
-              <span>魔晶闘士</span>
-              <em>無限格闘戦争</em>
-            </h1>
-            <p class="hero-lede">
-              组合技能宝石，创造只属于你的连招。让每一次冲击都由真实物理驱动，在瞬息万变的战场上把对手轰飞。
-            </p>
-
-            <div class="store-links" aria-label="下载游戏">
-              {storeLinks.map((store) => (
-                <a href={store.href} target="_blank" rel="noreferrer" aria-label={store.label}>
-                  <img class={store.className} src={store.image} alt={store.label} />
-                </a>
-              ))}
-            </div>
-            <p class="store-note"><span aria-hidden="true"></span> 免费游玩 · 含广告与应用内购买</p>
+      <section class="studio-hero" aria-labelledby="studio-title">
+        <div class="studio-grid" aria-hidden="true"></div>
+        <div class="shell studio-hero-inner">
+          <div class="studio-hero-copy">
+            <p class="studio-kicker">HOTARU STUDIO · TOKYO</p>
+            <h1 id="studio-title">把复杂的系统，<br /><em>做成可以直接使用的产品。</em></h1>
+            <p>我们独立设计和开发游戏与应用。从真实物理驱动的格斗体验，到整理外汇判断信息的 AI 工具，每件作品都从“怎样让人更容易理解和行动”开始。</p>
+            <a class="text-link" href="#works">查看作品 <span aria-hidden="true">↓</span></a>
           </div>
 
-          <div class="hero-visual" aria-label="游戏战斗画面">
-            <figure class="hero-screen hero-screen--main">
-              <img src="/game/battle-03.png" alt="角色使用连续踢技与敌人战斗" width="1600" height="900" />
+          <div class="studio-hero-montage" aria-label="HOTARU STUDIO 作品预览">
+            <figure class="montage-game">
+              <img src="/game/battle-03.png" alt="魔晶闘士游戏战斗画面" width="1600" height="900" />
+              <figcaption>PHYSICS FIGHTING</figcaption>
             </figure>
-            <figure class="hero-screen hero-screen--back" aria-hidden="true">
-              <img src="/game/battle-02.png" alt="" width="1600" height="900" />
+            <figure class="montage-fx">
+              <img src="/fxtrade/screen-overview-zh.png" alt="USD/JPY Advice 应用界面" width="1242" height="2688" />
+              <figcaption>AI DECISION SUPPORT</figcaption>
             </figure>
-            <div class="impact-chip impact-chip--top" aria-hidden="true">
-              <span>05</span>
-              <strong>HITS</strong>
-            </div>
-            <div class="impact-chip impact-chip--bottom" aria-hidden="true">
-              <span>∞</span>
-              <strong>BUILD</strong>
-            </div>
+            <span class="montage-index">02<br /><small>PRODUCTS</small></span>
           </div>
         </div>
       </section>
 
-      <section class="combat-strip" aria-label="游戏特色概览">
-        <div class="shell combat-strip-inner">
-          <p><span>01</span>真实物理碰撞</p>
-          <p><span>02</span>技能宝石构筑</p>
-          <p><span>03</span>竞技场 PvP</p>
-          <p><span>04</span>iOS / Android</p>
-        </div>
-      </section>
-
-      <section id="gameplay" class="section gameplay" aria-labelledby="gameplay-title">
+      <section class="studio-statement" aria-label="工作室方向">
         <div class="shell">
-          <div class="section-heading">
-            <p class="section-index">01 / BUILD YOUR FIGHTER</p>
+          <p>INDEPENDENT BY DESIGN</p>
+          <strong>游戏的爽快感，需要精密系统。<br />决策的清晰度，也一样。</strong>
+        </div>
+      </section>
+
+      <section id="works" class="works" aria-labelledby="works-title">
+        <div class="shell">
+          <div class="studio-section-heading">
+            <p>01 / SELECTED WORKS</p>
             <div>
-              <h2 id="gameplay-title">拼出技能，<br />打出自己的节奏。</h2>
-              <p>距离、属性、效果与释放顺序，都由你决定。把技能宝石装进连招，在开战前先赢下策略。</p>
+              <h2 id="works-title">当前作品</h2>
+              <span>一个已经上线，一个正在准备。</span>
             </div>
           </div>
 
-          <div class="build-showcase">
-            <figure class="build-screen">
-              <img src="/game/battle-05.webp" alt="角色技能宝石与连招配置界面" width="1600" height="740" loading="lazy" />
-              <figcaption>
-                <span>COMBO LAB</span>
-                <strong>每一颗宝石，都是下一次击飞的变量。</strong>
-              </figcaption>
-            </figure>
-            <div class="build-stats" aria-label="构筑特点">
-              <article>
-                <span>RANGE</span>
-                <strong>近 · 中 · 远</strong>
-                <p>按攻击距离分配技能，让连段衔接更顺畅。</p>
-              </article>
-              <article>
-                <span>STYLE</span>
-                <strong>自由组合</strong>
-                <p>搭配主动技能与特殊效果，形成独有打法。</p>
-              </article>
-              <article>
-                <span>TIMING</span>
-                <strong>一瞬决胜</strong>
-                <p>抓住对手破绽，用正确时机释放致命连招。</p>
-              </article>
+          <article class="work work--game">
+            <a class="work-media" href={site.game.path} aria-label={`查看 ${site.game.name}`}>
+              <img src="/game/battle-07.webp" alt="三名玩家在竞技场迎战敌人" width="1600" height="740" loading="lazy" />
+              <span class="work-number">01</span>
+            </a>
+            <div class="work-copy">
+              <div class="work-meta"><span>GAME · iOS / ANDROID</span><strong class="status-live">现已上线</strong></div>
+              <img class="work-icon" src="/game/app-icon.jpg" alt="" width="88" height="88" loading="lazy" />
+              <p class="work-overline">GEM WARRIOR</p>
+              <h3>{site.game.name}</h3>
+              <p>{site.game.description}</p>
+              <div class="work-actions">
+                <a href={site.game.path}>项目详情 <span>→</span></a>
+                <a href={site.game.privacyPath}>隐私政策</a>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <section class="section physics" aria-labelledby="physics-title">
-        <div class="shell physics-grid">
-          <div class="physics-copy">
-            <p class="section-index">02 / FEEL THE IMPACT</p>
-            <h2 id="physics-title">碰撞，不只是动画。</h2>
-            <p>真实物理演算让每一拳、每一次击飞和场景互动都拥有不同结果。简单操作之下，是位置、方向与时机共同构成的战术空间。</p>
-            <ul>
-              <li><span>01</span>动态打击与爽快击飞</li>
-              <li><span>02</span>多样敌人与舞台机关</li>
-              <li><span>03</span>首领、故事与混合挑战</li>
-            </ul>
-          </div>
-          <figure class="physics-screen">
-            <img src="/game/battle-04.png" alt="角色释放蓝色能量技能击飞敌人" width="1600" height="900" loading="lazy" />
-          </figure>
-        </div>
-      </section>
-
-      <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
-        <div class="shell">
-          <div class="gallery-heading">
-            <div>
-              <p class="section-index">03 / INTO THE ARENA</p>
-              <h2 id="gallery-title">每一场，都有新变量。</h2>
+          <article class="work work--fx">
+            <div class="work-copy">
+              <div class="work-meta"><span>FINANCE TOOL · iOS</span><strong class="status-soon">准备上线</strong></div>
+              <img class="work-icon" src="/fxtrade/app-icon.png" alt="" width="88" height="88" loading="lazy" />
+              <p class="work-overline">FXTRADE PROJECT</p>
+              <h3>{site.fxtrade.name}</h3>
+              <p>{site.fxtrade.description}</p>
+              <div class="work-actions">
+                <a href={site.fxtrade.path}>项目详情 <span>→</span></a>
+                <a href={site.fxtrade.privacyPath}>隐私政策</a>
+              </div>
             </div>
-            <p>从一对一格斗到多人混战，在多样舞台与敌人组合中不断调整战术。</p>
-          </div>
-
-          <div class="gallery-grid">
-            <figure class="gallery-card gallery-card--wide">
-              <img src="/game/battle-07.webp" alt="三名玩家在太空竞技场迎战熔岩敌人" width="1600" height="740" loading="lazy" />
-              <figcaption><span>TEAM BATTLE</span><strong>并肩迎战</strong></figcaption>
-            </figure>
-            <figure class="gallery-card">
-              <img src="/game/battle-06.webp" alt="玩家在环形竞技场进行对决" width="1600" height="740" loading="lazy" />
-              <figcaption><span>ARENA</span><strong>PvP 对决</strong></figcaption>
-            </figure>
-            <figure class="gallery-card">
-              <img src="/game/battle-01.png" alt="Gem Warrior 游戏标题画面" width="1600" height="900" loading="lazy" />
-              <figcaption><span>MUGEN COMBAT</span><strong>无限格斗</strong></figcaption>
-            </figure>
-          </div>
+            <a class="work-media work-media--phone" href={site.fxtrade.path} aria-label={`查看 ${site.fxtrade.name}`}>
+              <div class="fx-panel-copy" aria-hidden="true">
+                <span>USD / JPY</span>
+                <strong>REAL-TIME<br />DECISION SUPPORT</strong>
+                <small>TREND · RSI · ATR · RISK</small>
+              </div>
+              <img src="/fxtrade/screen-overview-zh.png" alt="USD/JPY Advice 实时行情与分析界面" width="1242" height="2688" loading="lazy" />
+              <span class="work-number">02</span>
+            </a>
+          </article>
         </div>
       </section>
 
-      <section class="features" aria-labelledby="features-title">
-        <div class="shell">
-          <div class="features-title-row">
-            <p class="section-index">04 / FEATURES</p>
-            <h2 id="features-title">五种乐趣，一场无限战争。</h2>
+      <section id="studio" class="studio-about" aria-labelledby="about-title">
+        <div class="shell about-grid">
+          <p class="studio-section-index">02 / THE STUDIO</p>
+          <div>
+            <h2 id="about-title">从原型到上线，<br />把产品完整地做出来。</h2>
+            <p>HOTARU STUDIO 是一个独立产品工作室。我们关注交互、视觉与底层逻辑之间是否真正连贯，也重视隐私、风险说明和长期维护这些不在主画面里的细节。</p>
           </div>
-          <div class="feature-grid">
-            {site.features.map((feature) => (
-              <article>
-                <span>{feature.number}</span>
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-              </article>
-            ))}
-          </div>
+          <dl>
+            <div><dt>FOCUS</dt><dd>Games & useful apps</dd></div>
+            <div><dt>PLATFORM</dt><dd>iOS · Android</dd></div>
+            <div><dt>BASED IN</dt><dd>Tokyo, Japan</dd></div>
+          </dl>
         </div>
       </section>
 
-      <section id="download" class="download" aria-labelledby="download-title">
-        <div class="download-backdrop" aria-hidden="true"></div>
-        <div class="shell download-inner">
-          <img class="download-icon" src="/game/app-icon.jpg" alt="魔晶闘士游戏图标" width="152" height="152" loading="lazy" />
-          <p class="section-index">THE FIGHT STARTS NOW</p>
-          <h2 id="download-title">现在加入<br />无限格斗战争。</h2>
-          <p>免费下载。选择你的斗士，组合技能宝石，用物理把对手轰出战场。</p>
-          <div class="store-links store-links--center" aria-label="下载游戏">
-            {storeLinks.map((store) => (
-              <a href={store.href} target="_blank" rel="noreferrer" aria-label={store.label}>
-                <img class={store.className} src={store.image} alt={store.label} />
-              </a>
-            ))}
-          </div>
+      <section id="contact" class="studio-contact" aria-labelledby="contact-title">
+        <div class="shell contact-inner">
+          <p>03 / CONTACT</p>
+          <h2 id="contact-title">有问题或合作想法？<br /><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></h2>
+          <span>我们会通过电子邮件回复。</span>
         </div>
       </section>
     </main>

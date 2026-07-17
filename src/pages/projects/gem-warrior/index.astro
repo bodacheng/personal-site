@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import { site } from '../../../config/site';
+
+const storeLinks = [
+  {
+    href: site.game.iosUrl,
+    label: '从 App Store 下载',
+    image: '/game/app-store-badge.svg',
+    className: 'store-badge store-badge--apple',
+  },
+  {
+    href: site.game.androidUrl,
+    label: '从 Google Play 下载',
+    image: '/game/google-play-badge.png',
+    className: 'store-badge store-badge--google',
+  },
+];
+---
+
+<BaseLayout
+  title={`${site.game.name}｜${site.name}`}
+  description={site.game.description}
+  ogImage="/og.png"
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'VideoGame',
+    name: site.game.name,
+    description: site.game.description,
+    url: new URL(site.game.path, site.url),
+    image: new URL('/game/app-icon.jpg', site.url),
+    applicationCategory: 'GameApplication',
+    operatingSystem: ['iOS', 'Android'],
+    author: { '@type': 'Organization', name: site.name },
+  }}
+>
+  <div id="top" class="page-grid">
+    <Header context="game" />
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid-glow" aria-hidden="true"></div>
+        <div class="shell hero-inner">
+          <div class="hero-copy">
+            <div class="game-lockup">
+              <img src="/game/app-icon.jpg" alt="魔晶闘士游戏图标" width="112" height="112" />
+              <p>
+                <span>HOTARU STUDIO PRESENTS</span>
+                <strong>PHYSICS FIGHTING × SKILL BUILD</strong>
+              </p>
+            </div>
+
+            <p class="hero-kicker">GEM WARRIOR · MUGEN COMBAT WAR</p>
+            <h1 id="hero-title">
+              <span>魔晶闘士</span>
+              <em>無限格闘戦争</em>
+            </h1>
+            <p class="hero-lede">
+              组合技能宝石，创造只属于你的连招。让每一次冲击都由真实物理驱动，在瞬息万变的战场上把对手轰飞。
+            </p>
+
+            <div class="store-links" aria-label="下载游戏">
+              {storeLinks.map((store) => (
+                <a href={store.href} target="_blank" rel="noreferrer" aria-label={store.label}>
+                  <img class={store.className} src={store.image} alt={store.label} />
+                </a>
+              ))}
+            </div>
+            <p class="store-note"><span aria-hidden="true"></span> 免费游玩 · 含广告与应用内购买 · <a href={site.game.privacyPath}>隐私政策</a></p>
+          </div>
+
+          <div class="hero-visual" aria-label="游戏战斗画面">
+            <figure class="hero-screen hero-screen--main">
+              <img src="/game/battle-03.png" alt="角色使用连续踢技与敌人战斗" width="1600" height="900" />
+            </figure>
+            <figure class="hero-screen hero-screen--back" aria-hidden="true">
+              <img src="/game/battle-02.png" alt="" width="1600" height="900" />
+            </figure>
+            <div class="impact-chip impact-chip--top" aria-hidden="true">
+              <span>05</span>
+              <strong>HITS</strong>
+            </div>
+            <div class="impact-chip impact-chip--bottom" aria-hidden="true">
+              <span>∞</span>
+              <strong>BUILD</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="combat-strip" aria-label="游戏特色概览">
+        <div class="shell combat-strip-inner">
+          <p><span>01</span>真实物理碰撞</p>
+          <p><span>02</span>技能宝石构筑</p>
+          <p><span>03</span>竞技场 PvP</p>
+          <p><span>04</span>iOS / Android</p>
+        </div>
+      </section>
+
+      <section id="gameplay" class="section gameplay" aria-labelledby="gameplay-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-index">01 / BUILD YOUR FIGHTER</p>
+            <div>
+              <h2 id="gameplay-title">拼出技能，<br />打出自己的节奏。</h2>
+              <p>距离、属性、效果与释放顺序，都由你决定。把技能宝石装进连招，在开战前先赢下策略。</p>
+            </div>
+          </div>
+
+          <div class="build-showcase">
+            <figure class="build-screen">
+              <img src="/game/battle-05.webp" alt="角色技能宝石与连招配置界面" width="1600" height="740" loading="lazy" />
+              <figcaption>
+                <span>COMBO LAB</span>
+                <strong>每一颗宝石，都是下一次击飞的变量。</strong>
+              </figcaption>
+            </figure>
+            <div class="build-stats" aria-label="构筑特点">
+              <article>
+                <span>RANGE</span>
+                <strong>近 · 中 · 远</strong>
+                <p>按攻击距离分配技能，让连段衔接更顺畅。</p>
+              </article>
+              <article>
+                <span>STYLE</span>
+                <strong>自由组合</strong>
+                <p>搭配主动技能与特殊效果，形成独有打法。</p>
+              </article>
+              <article>
+                <span>TIMING</span>
+                <strong>一瞬决胜</strong>
+                <p>抓住对手破绽，用正确时机释放致命连招。</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section physics" aria-labelledby="physics-title">
+        <div class="shell physics-grid">
+          <div class="physics-copy">
+            <p class="section-index">02 / FEEL THE IMPACT</p>
+            <h2 id="physics-title">碰撞，不只是动画。</h2>
+            <p>真实物理演算让每一拳、每一次击飞和场景互动都拥有不同结果。简单操作之下，是位置、方向与时机共同构成的战术空间。</p>
+            <ul>
+              <li><span>01</span>动态打击与爽快击飞</li>
+              <li><span>02</span>多样敌人与舞台机关</li>
+              <li><span>03</span>首领、故事与混合挑战</li>
+            </ul>
+          </div>
+          <figure class="physics-screen">
+            <img src="/game/battle-04.png" alt="角色释放蓝色能量技能击飞敌人" width="1600" height="900" loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
+        <div class="shell">
+          <div class="gallery-heading">
+            <div>
+              <p class="section-index">03 / INTO THE ARENA</p>
+              <h2 id="gallery-title">每一场，都有新变量。</h2>
+            </div>
+            <p>从一对一格斗到多人混战，在多样舞台与敌人组合中不断调整战术。</p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-card gallery-card--wide">
+              <img src="/game/battle-07.webp" alt="三名玩家在太空竞技场迎战熔岩敌人" width="1600" height="740" loading="lazy" />
+              <figcaption><span>TEAM BATTLE</span><strong>并肩迎战</strong></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/game/battle-06.webp" alt="玩家在环形竞技场进行对决" width="1600" height="740" loading="lazy" />
+              <figcaption><span>ARENA</span><strong>PvP 对决</strong></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/game/battle-01.png" alt="Gem Warrior 游戏标题画面" width="1600" height="900" loading="lazy" />
+              <figcaption><span>MUGEN COMBAT</span><strong>无限格斗</strong></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" aria-labelledby="features-title">
+        <div class="shell">
+          <div class="features-title-row">
+            <p class="section-index">04 / FEATURES</p>
+            <h2 id="features-title">五种乐趣，一场无限战争。</h2>
+          </div>
+          <div class="feature-grid">
+            {site.game.features.map((feature) => (
+              <article>
+                <span>{feature.number}</span>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="download" class="download" aria-labelledby="download-title">
+        <div class="download-backdrop" aria-hidden="true"></div>
+        <div class="shell download-inner">
+          <img class="download-icon" src="/game/app-icon.jpg" alt="魔晶闘士游戏图标" width="152" height="152" loading="lazy" />
+          <p class="section-index">THE FIGHT STARTS NOW</p>
+          <h2 id="download-title">现在加入<br />无限格斗战争。</h2>
+          <p>免费下载。选择你的斗士，组合技能宝石，用物理把对手轰出战场。</p>
+          <div class="store-links store-links--center" aria-label="下载游戏">
+            {storeLinks.map((store) => (
+              <a href={store.href} target="_blank" rel="noreferrer" aria-label={store.label}>
+                <img class={store.className} src={store.image} alt={store.label} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

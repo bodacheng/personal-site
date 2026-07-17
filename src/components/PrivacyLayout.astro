@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+import { site } from '../config/site';
+
+interface Props {
+  product: string;
+  summary: string;
+  backHref: string;
+}
+
+const { product, summary, backHref } = Astro.props;
+---
+
+<BaseLayout title={`${product} 隐私政策｜${site.name}`} description={summary}>
+  <div id="top" class="policy-page">
+    <Header context="privacy" />
+    <main id="main">
+      <header class="policy-hero">
+        <div class="shell policy-hero-inner">
+          <p>PRIVACY POLICY</p>
+          <h1>{product}</h1>
+          <div>
+            <span>生效日期 / Effective date</span>
+            <strong>2026-07-17</strong>
+          </div>
+        </div>
+      </header>
+      <div class="policy-language-bar">
+        <div class="shell">
+          <span>LANGUAGE</span>
+          <a href="#zh">中文</a>
+          <a href="#ja">日本語</a>
+          <a href="#en">English</a>
+          <a class="policy-back" href={backHref}>返回项目页 →</a>
+        </div>
+      </div>
+      <div class="shell policy-document">
+        <slot />
+      </div>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

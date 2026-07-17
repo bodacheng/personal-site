@@ -5,47 +5,40 @@ import { site } from '../config/site';
 interface Props {
   title?: string;
   description?: string;
+  lang?: string;
+  ogImage?: string;
+  structuredData?: Record<string, unknown>;
 }
 
 const {
   title = `${site.name}｜${site.title}`,
   description = site.description,
+  lang = 'zh-CN',
+  ogImage = '/og-studio.png',
+  structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.name,
+    legalName: site.legalName,
+    description: site.description,
+    url: site.url,
+    email: site.contactEmail,
+  },
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, site.url);
-const socialImage = new URL('/og.png', site.url);
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'VideoGame',
-  name: site.name,
-  alternateName: 'Gem Warrior - Mugen Combat War',
-  description: site.description,
-  url: site.url,
-  image: new URL('/game/app-icon.jpg', site.url),
-  applicationCategory: 'GameApplication',
-  operatingSystem: ['iOS', 'Android'],
-  genre: ['Action', 'Fighting', 'Strategy'],
-  author: {
-    '@type': 'Organization',
-    name: site.developer,
-  },
-  offers: {
-    '@type': 'Offer',
-    price: '0',
-    priceCurrency: 'JPY',
-  },
-};
+const socialImage = new URL(ogImage, site.url);
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#090b12" />
-    <link rel="icon" type="image/jpeg" href="/game/app-icon.jpg" />
+    <meta name="theme-color" content="#080a10" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
 
     <meta property="og:type" content="website" />
