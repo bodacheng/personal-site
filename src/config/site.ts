@@ -5,7 +5,7 @@ export const site = {
   description:
     'HOTARU STUDIO 专注于把复杂系统做成直观、可用的数字产品。目前作品包括物理格斗游戏《魔晶闘士-無限格闘戦争》与 USD/JPY AI 决策辅助应用 FXTrade。',
   url: 'https://personal-site.bodacheng.workers.dev',
-  contactEmail: 'hakuforwork@gmail.com',
+  contactEmail: 'mugencombat34@gmail.com',
   gameSupportEmail: 'mugencombat34@gmail.com',
   game: {
     name: '魔晶闘士-無限格闘戦争',
