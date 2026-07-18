@@ -20,8 +20,15 @@ const isHome = context === 'home';
     </a>
 
     <nav aria-label="主要导航">
-      <a href={isHome ? '#works' : '/#works'}>作品</a>
-      <a href={isHome ? '#studio' : '/#studio'}>关于</a>
+      {isHome ? (
+        <>
+          <a href="#game-project">游戏</a>
+          <a href="#fx-project">应用</a>
+        </>
+      ) : (
+        <a href="/#works">全部作品</a>
+      )}
+      <a href={isHome ? '#studio' : '/#studio'}>工作室</a>
       <a href="/privacy/">隐私政策</a>
       <a class="nav-cta" href={isHome ? '#contact' : '/#contact'}>联系</a>
     </nav>

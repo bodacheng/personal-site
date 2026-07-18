@@ -1,20 +1,7 @@
-import homePage from '../dist/index.html';
-
-const assetVersion = 'studio-20260717';
+const assetVersion = 'studio-20260718-separated';
 
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
-
-    if (url.pathname === '/') {
-      return new Response(homePage, {
-        headers: {
-          'Cache-Control': 'no-store',
-          'Content-Type': 'text/html; charset=UTF-8',
-        },
-      });
-    }
-
     const assetUrl = new URL(request.url);
     assetUrl.searchParams.set('__asset_version', assetVersion);
     const assetResponse = await env.ASSETS.fetch(new Request(assetUrl, request));

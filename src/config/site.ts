@@ -3,7 +3,7 @@ export const site = {
   legalName: 'HOTARU LIMITED LIABILITY COMPANY',
   title: '独立游戏与应用工作室',
   description:
-    'HOTARU STUDIO 专注于把复杂系统做成直观、可用的数字产品。目前作品包括物理格斗游戏《魔晶闘士-無限格闘戦争》与 USD/JPY AI 决策辅助应用 FXTrade。',
+    'HOTARU STUDIO 是位于东京的独立开发工作室，分别开发游戏与实用应用，并为每项产品建立独立的体验与设计体系。',
   url: 'https://personal-site.bodacheng.workers.dev',
   contactEmail: 'mugencombat34@gmail.com',
   gameSupportEmail: 'mugencombat34@gmail.com',

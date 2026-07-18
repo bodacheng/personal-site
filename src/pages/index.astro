@@ -6,114 +6,120 @@ import { site } from '../config/site';
 ---
 
 <BaseLayout>
-  <div id="top" class="studio-home">
+  <div id="top" class="portfolio-home">
     <Header context="home" />
 
     <main id="main">
-      <section class="studio-hero" aria-labelledby="studio-title">
-        <div class="studio-grid" aria-hidden="true"></div>
-        <div class="shell studio-hero-inner">
-          <div class="studio-hero-copy">
-            <p class="studio-kicker">HOTARU STUDIO · TOKYO</p>
-            <h1 id="studio-title">把复杂的系统，<br /><em>做成可以直接使用的产品。</em></h1>
-            <p>我们独立设计和开发游戏与应用。从真实物理驱动的格斗体验，到整理外汇判断信息的 AI 工具，每件作品都从“怎样让人更容易理解和行动”开始。</p>
-            <a class="text-link" href="#works">查看作品 <span aria-hidden="true">↓</span></a>
-          </div>
-
-          <div class="studio-hero-montage" aria-label="HOTARU STUDIO 作品预览">
-            <figure class="montage-game">
-              <img src="/game/battle-03.png" alt="魔晶闘士游戏战斗画面" width="1600" height="900" />
-              <figcaption>PHYSICS FIGHTING</figcaption>
-            </figure>
-            <figure class="montage-fx">
-              <img src="/fxtrade/screen-overview-zh.png" alt="USD/JPY Advice 应用界面" width="1242" height="2688" />
-              <figcaption>AI DECISION SUPPORT</figcaption>
-            </figure>
-            <span class="montage-index">02<br /><small>PRODUCTS</small></span>
+      <section class="portfolio-intro" aria-labelledby="portfolio-title">
+        <div class="portfolio-intro-lines" aria-hidden="true"></div>
+        <div class="shell portfolio-intro-inner">
+          <p class="portfolio-eyebrow">INDEPENDENT DEVELOPMENT · TOKYO</p>
+          <h1 id="portfolio-title"><span>HOTARU</span><span>STUDIO</span></h1>
+          <div class="portfolio-intro-bottom">
+            <p>独立开发游戏与实用应用。每个项目围绕自己的用户、目的和使用场景，采用完全独立的产品语言。</p>
+            <nav class="portfolio-jump" aria-label="选择作品类别">
+              <a href="#game-project"><span>01</span><strong>游戏</strong><small>GAME</small></a>
+              <a href="#fx-project"><span>02</span><strong>应用</strong><small>APPLICATION</small></a>
+            </nav>
           </div>
         </div>
       </section>
 
-      <section class="studio-statement" aria-label="工作室方向">
+      <section id="works" class="portfolio-index" aria-labelledby="works-title">
         <div class="shell">
-          <p>INDEPENDENT BY DESIGN</p>
-          <strong>游戏的爽快感，需要精密系统。<br />决策的清晰度，也一样。</strong>
+          <p>SELECTED WORKS</p>
+          <h2 id="works-title">作品</h2>
+          <span>以下项目分别进入各自的设计世界。</span>
         </div>
       </section>
 
-      <section id="works" class="works" aria-labelledby="works-title">
-        <div class="shell">
-          <div class="studio-section-heading">
-            <p>01 / SELECTED WORKS</p>
-            <div>
-              <h2 id="works-title">当前作品</h2>
-              <span>一个已经上线，一个正在准备。</span>
+      <section id="game-project" class="home-game-project" aria-labelledby="home-game-title">
+        <div class="game-project-visual">
+          <img src="/game/battle-03.png" alt="魔晶闘士角色在竞技场中进行物理格斗" width="1600" height="900" />
+          <div class="game-visual-label"><span>PHYSICS FIGHTING</span><strong>GEM WARRIOR</strong></div>
+        </div>
+        <div class="game-project-copy">
+          <div class="project-category"><span>01 / GAME</span><strong>现已上线</strong></div>
+          <div class="game-title-lockup">
+            <img src="/game/app-icon.jpg" alt="魔晶闘士游戏图标" width="96" height="96" />
+            <p>iOS · Android</p>
+          </div>
+          <h2 id="home-game-title">魔晶闘士<br /><em>無限格闘戦争</em></h2>
+          <p>{site.game.description}</p>
+          <ul class="game-project-tags" aria-label="游戏特点">
+            <li>技能宝石构筑</li>
+            <li>真实物理碰撞</li>
+            <li>竞技场 PvP</li>
+          </ul>
+          <div class="project-primary-actions">
+            <a class="game-detail-link" href={site.game.path}>进入游戏项目页 <span>→</span></a>
+            <a href={site.game.privacyPath}>隐私政策</a>
+          </div>
+          <div class="home-store-links" aria-label="下载游戏">
+            <a href={site.game.iosUrl} target="_blank" rel="noreferrer"><img src="/game/app-store-badge.svg" alt="从 App Store 下载" /></a>
+            <a href={site.game.androidUrl} target="_blank" rel="noreferrer"><img src="/game/google-play-badge.png" alt="从 Google Play 下载" /></a>
+          </div>
+        </div>
+      </section>
+
+      <div class="project-separator" aria-hidden="true"><span>END / GAME</span><span>NEXT / APPLICATION</span></div>
+
+      <section id="fx-project" class="home-fx-project" aria-labelledby="home-fx-title">
+        <div class="shell home-fx-inner">
+          <div class="fx-project-copy">
+            <div class="project-category"><span>02 / APPLICATION</span><strong>准备上线</strong></div>
+            <div class="fx-title-lockup">
+              <img src="/fxtrade/app-icon.png" alt="USD/JPY Advice 应用图标" width="96" height="96" />
+              <p>FXTRADE PROJECT<br /><span>FOR iOS</span></p>
             </div>
+            <p class="fx-product-kicker">USD/JPY DECISION SUPPORT</p>
+            <h2 id="home-fx-title">USD/JPY<br /><em>Advice</em></h2>
+            <p>{site.fxtrade.description}</p>
+            <dl class="fx-project-data">
+              <div><dt>MARKET</dt><dd>USD / JPY</dd></div>
+              <div><dt>INDICATORS</dt><dd>Trend · RSI · ATR</dd></div>
+              <div><dt>LANGUAGE</dt><dd>日本語 · English · 简体中文</dd></div>
+            </dl>
+            <div class="project-primary-actions project-primary-actions--fx">
+              <a class="fx-detail-link" href={site.fxtrade.path}>进入应用项目页 <span>→</span></a>
+              <a href={site.fxtrade.privacyPath}>隐私政策</a>
+            </div>
+            <p class="fx-project-note">信息与决策辅助工具 · 不连接券商账户 · 不代替用户交易</p>
           </div>
 
-          <article class="work work--game">
-            <a class="work-media" href={site.game.path} aria-label={`查看 ${site.game.name}`}>
-              <img src="/game/battle-07.webp" alt="三名玩家在竞技场迎战敌人" width="1600" height="740" loading="lazy" />
-              <span class="work-number">01</span>
-            </a>
-            <div class="work-copy">
-              <div class="work-meta"><span>GAME · iOS / ANDROID</span><strong class="status-live">现已上线</strong></div>
-              <img class="work-icon" src="/game/app-icon.jpg" alt="" width="88" height="88" loading="lazy" />
-              <p class="work-overline">GEM WARRIOR</p>
-              <h3>{site.game.name}</h3>
-              <p>{site.game.description}</p>
-              <div class="work-actions">
-                <a href={site.game.path}>项目详情 <span>→</span></a>
-                <a href={site.game.privacyPath}>隐私政策</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="work work--fx">
-            <div class="work-copy">
-              <div class="work-meta"><span>FINANCE TOOL · iOS</span><strong class="status-soon">准备上线</strong></div>
-              <img class="work-icon" src="/fxtrade/app-icon.png" alt="" width="88" height="88" loading="lazy" />
-              <p class="work-overline">FXTRADE PROJECT</p>
-              <h3>{site.fxtrade.name}</h3>
-              <p>{site.fxtrade.description}</p>
-              <div class="work-actions">
-                <a href={site.fxtrade.path}>项目详情 <span>→</span></a>
-                <a href={site.fxtrade.privacyPath}>隐私政策</a>
-              </div>
-            </div>
-            <a class="work-media work-media--phone" href={site.fxtrade.path} aria-label={`查看 ${site.fxtrade.name}`}>
-              <div class="fx-panel-copy" aria-hidden="true">
-                <span>USD / JPY</span>
-                <strong>REAL-TIME<br />DECISION SUPPORT</strong>
-                <small>TREND · RSI · ATR · RISK</small>
-              </div>
-              <img src="/fxtrade/screen-overview-zh.png" alt="USD/JPY Advice 实时行情与分析界面" width="1242" height="2688" loading="lazy" />
-              <span class="work-number">02</span>
-            </a>
-          </article>
+          <div class="fx-project-visual" aria-label="USD/JPY Advice 应用界面">
+            <div class="fx-visual-grid" aria-hidden="true"></div>
+            <figure class="fx-home-phone fx-home-phone--overview">
+              <img src="/fxtrade/screen-overview-zh.png" alt="USD/JPY 实时行情与技术指标界面" width="1242" height="2688" loading="lazy" />
+            </figure>
+            <figure class="fx-home-phone fx-home-phone--advice">
+              <img src="/fxtrade/screen-advice-zh.png" alt="AI 交易建议与风险信息界面" width="1242" height="2688" loading="lazy" />
+            </figure>
+            <div class="fx-visual-caption"><span>REAL-TIME</span><strong>RATE · CHART · RISK</strong></div>
+          </div>
         </div>
       </section>
 
-      <section id="studio" class="studio-about" aria-labelledby="about-title">
-        <div class="shell about-grid">
-          <p class="studio-section-index">02 / THE STUDIO</p>
+      <section id="studio" class="portfolio-about" aria-labelledby="about-title">
+        <div class="shell portfolio-about-inner">
+          <p>03 / STUDIO</p>
           <div>
-            <h2 id="about-title">从原型到上线，<br />把产品完整地做出来。</h2>
-            <p>HOTARU STUDIO 是一个独立产品工作室。我们关注交互、视觉与底层逻辑之间是否真正连贯，也重视隐私、风险说明和长期维护这些不在主画面里的细节。</p>
+            <h2 id="about-title">独立完成，<br />长期维护。</h2>
+            <p>HOTARU STUDIO 负责从原型、视觉和开发到发布后的维护。不同类别的项目保持各自的目标与设计体系，同时共享对可用性、透明说明和隐私保护的基本要求。</p>
           </div>
           <dl>
-            <div><dt>FOCUS</dt><dd>Games & useful apps</dd></div>
-            <div><dt>PLATFORM</dt><dd>iOS · Android</dd></div>
-            <div><dt>BASED IN</dt><dd>Tokyo, Japan</dd></div>
+            <div><dt>BASE</dt><dd>Tokyo, Japan</dd></div>
+            <div><dt>PLATFORMS</dt><dd>iOS · Android</dd></div>
+            <div><dt>CONTACT</dt><dd><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></dd></div>
           </dl>
         </div>
       </section>
 
-      <section id="contact" class="studio-contact" aria-labelledby="contact-title">
-        <div class="shell contact-inner">
-          <p>03 / CONTACT</p>
-          <h2 id="contact-title">有问题或合作想法？<br /><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></h2>
-          <span>我们会通过电子邮件回复。</span>
+      <section id="contact" class="portfolio-contact" aria-labelledby="contact-title">
+        <div class="shell">
+          <p>CONTACT</p>
+          <h2 id="contact-title">项目咨询与支持</h2>
+          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail} <span>↗</span></a>
         </div>
       </section>
     </main>
