@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://personal-site.bodacheng.workers.dev/sitemap-index.xml
+Sitemap: https://personal-site.hotaru-studio.workers.dev/sitemap-index.xml
