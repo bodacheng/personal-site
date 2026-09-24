@@ -18,7 +18,7 @@ import { site } from '../config/site';
           <div class="portfolio-intro-bottom">
             <p>独立开发游戏与实用应用。每个项目围绕自己的用户、目的和使用场景，采用完全独立的产品语言。</p>
             <nav class="portfolio-jump" aria-label="选择作品类别">
-              <a href="#game-project"><span>01</span><strong>游戏</strong><small>GAME</small></a>
+              <a href="#head-clash-project"><span>01</span><strong>游戏</strong><small>GAME</small></a>
               <a href="#fx-project"><span>02</span><strong>应用</strong><small>APPLICATION</small></a>
             </nav>
           </div>
@@ -33,13 +33,40 @@ import { site } from '../config/site';
         </div>
       </section>
 
+      <section id="head-clash-project" class="home-head-clash-project" aria-labelledby="home-head-clash-title">
+        <div class="head-clash-project-copy">
+          <div class="project-category"><span>01 / GAME</span><strong>{site.headClash.status}</strong></div>
+          <div class="head-clash-title-lockup">
+            <img src="/head-clash/icon.jpg" alt="飞头大战游戏图标" width="1024" height="1024" />
+            <p>HEAD CLASH<br /><span>iOS · Android</span></p>
+          </div>
+          <p class="head-clash-product-kicker">SIMULTANEOUS PHYSICS DUEL</p>
+          <h2 id="home-head-clash-title">飞头<span>大战</span></h2>
+          <p class="head-clash-summary">{site.headClash.description}</p>
+          <ul class="head-clash-tags" aria-label="游戏特色">
+            <li>同步规划与出击</li>
+            <li>反弹路线博弈</li>
+            <li>AI · 在线 1 对 1</li>
+          </ul>
+          <a class="head-clash-detail-link" href={site.headClash.path}>了解这款游戏 <span aria-hidden="true">→</span></a>
+          <p class="head-clash-availability">移动端开发中，尚未开放公开下载。</p>
+        </div>
+        <div class="head-clash-project-visual">
+          <img class="head-clash-hero-art" src="/head-clash/hero.jpg" alt="飞头大战的两名角色在海岛擂台上伸长脖子相撞的插画" width="1536" height="1024" />
+          <figure class="head-clash-preview">
+            <img src="/head-clash/battle.png" alt="飞头大战实际游戏画面：双方在圆形擂台同时出击" width="1080" height="1920" loading="lazy" />
+            <figcaption>ACTUAL GAMEPLAY</figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section id="game-project" class="home-game-project" aria-labelledby="home-game-title">
         <div class="game-project-visual">
           <img src="/game/battle-03.png" alt="魔晶闘士角色在竞技场中进行物理格斗" width="1600" height="900" />
           <div class="game-visual-label"><span>PHYSICS FIGHTING</span><strong>GEM WARRIOR</strong></div>
         </div>
         <div class="game-project-copy">
-          <div class="project-category"><span>01 / GAME</span><strong>现已上线</strong></div>
+          <div class="project-category"><span>02 / GAME</span><strong>现已上线</strong></div>
           <div class="game-title-lockup">
             <img src="/game/app-icon.jpg" alt="魔晶闘士游戏图标" width="96" height="96" />
             <p>iOS · Android</p>
@@ -67,7 +94,7 @@ import { site } from '../config/site';
       <section id="fx-project" class="home-fx-project" aria-labelledby="home-fx-title">
         <div class="shell home-fx-inner">
           <div class="fx-project-copy">
-            <div class="project-category"><span>02 / APPLICATION</span><strong>准备上线</strong></div>
+            <div class="project-category"><span>03 / APPLICATION</span><strong>准备上线</strong></div>
             <div class="fx-title-lockup">
               <img src="/fxtrade/app-icon.png" alt="USD/JPY Advice 应用图标" width="96" height="96" />
               <p>FXTRADE PROJECT<br /><span>FOR iOS</span></p>
@@ -102,7 +129,7 @@ import { site } from '../config/site';
 
       <section id="studio" class="portfolio-about" aria-labelledby="about-title">
         <div class="shell portfolio-about-inner">
-          <p>03 / STUDIO</p>
+          <p>04 / STUDIO</p>
           <div>
             <h2 id="about-title">独立完成，<br />长期维护。</h2>
             <p>HOTARU STUDIO 负责从原型、视觉和开发到发布后的维护。不同类别的项目保持各自的目标与设计体系，同时共享对可用性、透明说明和隐私保护的基本要求。</p>

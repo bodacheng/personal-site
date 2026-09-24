@@ -7,6 +7,14 @@ export const site = {
   url: 'https://personal-site.hotaru-studio.workers.dev',
   contactEmail: 'mugencombat34@gmail.com',
   gameSupportEmail: 'mugencombat34@gmail.com',
+  headClash: {
+    name: '飞头大战',
+    englishName: 'Head Clash',
+    description:
+      '先选择走位，再同时弹射角色的头部。利用石柱与边墙反弹，绕开颈部防守，击中对手身体，赢下同步回合制物理对决。',
+    path: '/projects/head-clash/',
+    status: '开发中',
+  },
   game: {
     name: '魔晶闘士-無限格闘戦争',
     shortName: 'GEM WARRIOR',
