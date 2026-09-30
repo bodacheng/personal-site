@@ -3,11 +3,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
 ---
 
-<BaseLayout title={`页面未找到 — ${site.name}`} description="请求的页面不存在。">
+<BaseLayout title={`页面未找到 — ${site.name}`} description="请求的页面不存在。" alternateLanguages={false}>
   <main class="not-found">
     <p class="eyebrow">404 · NOT FOUND</p>
-    <h1>这条路暂时<br />没有内容。</h1>
-    <p>地址可能写错了，或者页面已经移动。</p>
-    <a class="button" href="/">返回首页 <span aria-hidden="true">→</span></a>
+    <h1 data-not-found-title>这条路暂时<br />没有内容。</h1>
+    <p data-not-found-message>地址可能写错了，或者页面已经移动。</p>
+    <a class="button" data-not-found-home href="/">返回首页 <span aria-hidden="true">→</span></a>
+    <div class="not-found-languages" aria-label="Language">
+      <a href="/" lang="zh-CN">中文</a>
+      <a href="/ja/" lang="ja">日本語</a>
+      <a href="/en/" lang="en">English</a>
+    </div>
   </main>
 </BaseLayout>
+<script>
+  const pathname = window.location.pathname;
+  const locale = /^\/ja(?:\/|$)/.test(pathname) ? 'ja' : /^\/en(?:\/|$)/.test(pathname) ? 'en' : 'zh';
+  const copy = {
+    zh: { lang: 'zh-CN', title: '页面未找到', heading: '这条路暂时<br>没有内容。', message: '地址可能写错了，或者页面已经移动。', home: '返回首页', path: '/' },
+    ja: { lang: 'ja', title: 'ページが見つかりません', heading: 'この先には<br>ページがありません。', message: 'URL が間違っているか、ページが移動した可能性があります。', home: 'ホームへ戻る', path: '/ja/' },
+    en: { lang: 'en', title: 'Page not found', heading: 'There is nothing<br>at this address.', message: 'The address may be incorrect, or the page may have moved.', home: 'Back to home', path: '/en/' },
+  }[locale];
+  document.documentElement.lang = copy.lang;
+  document.title = `${copy.title} — HOTARU STUDIO`;
+  const title = document.querySelector<HTMLElement>('[data-not-found-title]');
+  const message = document.querySelector<HTMLElement>('[data-not-found-message]');
+  const home = document.querySelector<HTMLAnchorElement>('[data-not-found-home]');
+  if (title) title.innerHTML = copy.heading;
+  if (message) message.textContent = copy.message;
+  if (home) { home.href = copy.path; home.firstChild!.textContent = `${copy.home} `; }
+</script>

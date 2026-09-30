@@ -1,0 +1,391 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../Footer.astro';
+import Header from '../Header.astro';
+import { site } from '../../config/site';
+import { localeFromPath, localizedPath } from '../../i18n';
+
+const copy = {
+  zh: {
+    pageTitle: `${site.game.name}｜${site.name}`,
+    description: site.game.description,
+    gameName: site.game.name,
+    iconAlt: '魔晶闘士游戏图标',
+    presents: 'HOTARU STUDIO 出品',
+    lockup: '物理格斗 × 技能构筑',
+    kicker: 'GEM WARRIOR · MUGEN COMBAT WAR',
+    heroTitle: '魔晶闘士',
+    heroSubtitle: '无限格斗战争',
+    heroLede: '组合技能宝石，创造只属于你的连招。让每一次冲击都由真实物理驱动，在瞬息万变的战场上把对手轰飞。',
+    downloadsLabel: '下载游戏',
+    appStoreLabel: '从 App Store 下载',
+    googlePlayLabel: '从 Google Play 下载',
+    storeNote: '免费游玩 · 含广告与应用内购买 ·',
+    privacy: '隐私政策',
+    heroVisualLabel: '游戏战斗画面',
+    heroImageAlt: '角色使用连续踢技与敌人战斗',
+    hits: '连击',
+    build: '构筑',
+    overviewLabel: '游戏特色概览',
+    overview: ['真实物理碰撞', '技能宝石构筑', '竞技场 PvP', 'iOS / Android'],
+    buildIndex: '01 / 构筑你的斗士',
+    buildTitleLine1: '拼出技能，',
+    buildTitleLine2: '打出自己的节奏。',
+    buildIntro: '距离、属性、效果与释放顺序，都由你决定。把技能宝石装进连招，在开战前先赢下策略。',
+    buildImageAlt: '角色技能宝石与连招配置界面',
+    comboLab: '连招实验室',
+    buildCaption: '每一颗宝石，都是下一次击飞的变量。',
+    buildStatsLabel: '构筑特点',
+    stats: [
+      { label: '距离', value: '近 · 中 · 远', text: '按攻击距离分配技能，让连段衔接更顺畅。' },
+      { label: '风格', value: '自由组合', text: '搭配主动技能与特殊效果，形成独有打法。' },
+      { label: '时机', value: '一瞬决胜', text: '抓住对手破绽，用正确时机释放致命连招。' },
+    ],
+    physicsIndex: '02 / 感受冲击',
+    physicsTitle: '碰撞，不只是动画。',
+    physicsIntro: '真实物理演算让每一拳、每一次击飞和场景互动都拥有不同结果。简单操作之下，是位置、方向与时机共同构成的战术空间。',
+    physicsList: ['动态打击与爽快击飞', '多样敌人与舞台机关', '首领、故事与混合挑战'],
+    physicsImageAlt: '角色释放蓝色能量技能击飞敌人',
+    galleryIndex: '03 / 进入竞技场',
+    galleryTitle: '每一场，都有新变量。',
+    galleryIntro: '从一对一格斗到多人混战，在多样舞台与敌人组合中不断调整战术。',
+    galleryImageAlts: ['三名玩家在太空竞技场迎战熔岩敌人', '玩家在环形竞技场进行对决', 'Gem Warrior 游戏标题画面'],
+    galleryLabels: ['团队战斗', '竞技场', '无限格斗'],
+    galleryCaptions: ['并肩迎战', 'PvP 对决', '无限格斗'],
+    featuresIndex: '04 / 游戏特色',
+    featuresTitle: '五种乐趣，一场无限战争。',
+    features: site.game.features,
+    downloadIndex: '战斗现在开始',
+    downloadTitleLine1: '现在加入',
+    downloadTitleLine2: '无限格斗战争。',
+    downloadIntro: '免费下载。选择你的斗士，组合技能宝石，用物理把对手轰出战场。',
+  },
+  ja: {
+    pageTitle: `魔晶闘士・無限格闘戦争｜${site.name}`,
+    description: 'スキルジェムを組み合わせて自分だけの戦闘スタイルを作り、物理演算が生む爽快なバトルとアリーナ PvP で相手を吹き飛ばそう。iOS・Android で配信中。',
+    gameName: '魔晶闘士・無限格闘戦争',
+    iconAlt: '魔晶闘士のゲームアイコン',
+    presents: 'HOTARU STUDIO プレゼンツ',
+    lockup: '物理格闘 × スキルビルド',
+    kicker: 'GEM WARRIOR · MUGEN COMBAT WAR',
+    heroTitle: '魔晶闘士',
+    heroSubtitle: '無限格闘戦争',
+    heroLede: 'スキルジェムを組み合わせ、自分だけのコンボを作ろう。物理演算が生む一撃を感じながら、刻々と変化する戦場で相手を吹き飛ばせ。',
+    downloadsLabel: 'ゲームをダウンロード',
+    appStoreLabel: 'App Store でダウンロード',
+    googlePlayLabel: 'Google Play でダウンロード',
+    storeNote: '基本プレイ無料 · 広告・アプリ内課金あり ·',
+    privacy: 'プライバシーポリシー',
+    heroVisualLabel: 'ゲームの戦闘画面',
+    heroImageAlt: 'キャラクターが連続キックで敵と戦う場面',
+    hits: 'ヒット',
+    build: 'ビルド',
+    overviewLabel: 'ゲームの特長',
+    overview: ['物理演算による衝突', 'スキルジェムの構築', 'アリーナ PvP', 'iOS / Android'],
+    buildIndex: '01 / ファイターを育てる',
+    buildTitleLine1: 'スキルを組み、',
+    buildTitleLine2: '自分のリズムで戦え。',
+    buildIntro: '距離、属性、効果、発動順序まで、すべて自分で決められる。スキルジェムでコンボを組み、戦う前から戦略を練ろう。',
+    buildImageAlt: 'スキルジェムとコンボの設定画面',
+    comboLab: 'コンボラボ',
+    buildCaption: '一つひとつのジェムが、次の一撃を変える。',
+    buildStatsLabel: 'ビルドの特長',
+    stats: [
+      { label: '射程', value: '近 · 中 · 遠', text: '攻撃距離に合わせてスキルを配置し、コンボを滑らかにつなげよう。' },
+      { label: 'スタイル', value: '自由な組み合わせ', text: 'アクティブスキルと特殊効果を組み合わせ、自分だけの戦い方を作ろう。' },
+      { label: 'タイミング', value: '一瞬で決着', text: '相手の隙を見極め、決定的な瞬間にコンボを放とう。' },
+    ],
+    physicsIndex: '02 / 衝撃を感じろ',
+    physicsTitle: '衝突は、ただの演出じゃない。',
+    physicsIntro: '物理演算によって、パンチも吹き飛ばしもステージとの接触も毎回違う結果になる。シンプルな操作の奥に、位置、方向、タイミングを巡る駆け引きがある。',
+    physicsList: ['変化する打撃と爽快な吹き飛ばし', '多彩な敵とステージギミック', 'ボス、ストーリー、複合チャレンジ'],
+    physicsImageAlt: '青いエネルギー技で敵を吹き飛ばす場面',
+    galleryIndex: '03 / アリーナへ',
+    galleryTitle: '戦うたびに、新しい展開が待つ。',
+    galleryIntro: '一対一の格闘から多人数の乱戦まで、多彩なステージと敵に合わせて戦術を変えよう。',
+    galleryImageAlts: ['宇宙アリーナで三人のプレイヤーが溶岩の敵と戦う場面', '円形アリーナで対戦するプレイヤー', 'Gem Warrior のタイトル画面'],
+    galleryLabels: ['チームバトル', 'アリーナ', '無限格闘'],
+    galleryCaptions: ['仲間と共に戦う', 'PvP 対戦', '無限格闘'],
+    featuresIndex: '04 / 特長',
+    featuresTitle: '五つの楽しさが、無限の戦いに。',
+    features: [
+      { number: '01', title: '自由な戦闘スタイル', text: '距離、属性、効果の異なるスキルジェムを組み合わせ、ファイターごとのコンボを作ろう。' },
+      { number: '02', title: '簡単操作と奥深い戦略', text: 'スキルの配置と発動タイミングが勝敗を左右する。遊びやすく、何度も挑みたくなる。' },
+      { number: '03', title: '物理演算が生む爽快な衝突', text: '衝撃、吹き飛ばし、ステージとの接触を物理演算で表現。手応えのあるバトルを楽しもう。' },
+      { number: '04', title: '多彩なステージと挑戦', text: 'さまざまな敵、ギミック、ボスに立ち向かい、変化する戦場に合わせて戦おう。' },
+      { number: '05', title: 'アリーナ PvP', text: '反応と戦術でほかのプレイヤーに挑み、白熱の対戦で自分のビルドを試そう。' },
+    ],
+    downloadIndex: '今すぐ戦いへ',
+    downloadTitleLine1: '無限の格闘戦争に',
+    downloadTitleLine2: '飛び込もう。',
+    downloadIntro: '無料でダウンロード。ファイターを選び、スキルジェムを組み合わせ、物理演算の力で相手を場外へ吹き飛ばそう。',
+  },
+  en: {
+    pageTitle: `Gem Warrior: Mugen Combat War | ${site.name}`,
+    description: 'Combine skill gems to create your own fighting style. Launch opponents with physics powered combat and take on arena PvP. Available on iOS and Android.',
+    gameName: 'Gem Warrior: Mugen Combat War',
+    iconAlt: 'Gem Warrior game icon',
+    presents: 'HOTARU STUDIO PRESENTS',
+    lockup: 'PHYSICS FIGHTING × SKILL BUILDS',
+    kicker: 'GEM WARRIOR · MUGEN COMBAT WAR',
+    heroTitle: 'GEM WARRIOR',
+    heroSubtitle: 'MUGEN COMBAT WAR',
+    heroLede: 'Combine skill gems to create combos that are uniquely yours. Feel the physics behind every hit and launch your opponents across a constantly changing battlefield.',
+    downloadsLabel: 'Download the game',
+    appStoreLabel: 'Download on the App Store',
+    googlePlayLabel: 'Get it on Google Play',
+    storeNote: 'Free to play · Contains ads and in-app purchases ·',
+    privacy: 'Privacy Policy',
+    heroVisualLabel: 'Game combat screenshots',
+    heroImageAlt: 'A fighter uses a series of kicks against an enemy',
+    hits: 'HITS',
+    build: 'BUILD',
+    overviewLabel: 'Game highlights',
+    overview: ['Physics based combat', 'Skill gem builds', 'Arena PvP', 'iOS / Android'],
+    buildIndex: '01 / BUILD YOUR FIGHTER',
+    buildTitleLine1: 'Build your skills.',
+    buildTitleLine2: 'Set your rhythm.',
+    buildIntro: 'Choose the range, attribute, effect, and order of every move. Slot skill gems into a combo and start winning before the fight begins.',
+    buildImageAlt: 'Skill gem and combo configuration screen',
+    comboLab: 'COMBO LAB',
+    buildCaption: 'Every gem changes what happens on the next hit.',
+    buildStatsLabel: 'Build options',
+    stats: [
+      { label: 'RANGE', value: 'Close · Mid · Long', text: 'Assign skills by attack range to keep your combos flowing.' },
+      { label: 'STYLE', value: 'Make it yours', text: 'Mix active skills with special effects to create your own approach.' },
+      { label: 'TIMING', value: 'A split second matters', text: 'Find an opening and unleash the right combo at the right moment.' },
+    ],
+    physicsIndex: '02 / FEEL THE IMPACT',
+    physicsTitle: 'Every collision counts.',
+    physicsIntro: 'Physics simulation gives every punch, launch, and interaction with the arena a different outcome. Simple controls open up a tactical game of position, direction, and timing.',
+    physicsList: ['Dynamic strikes and powerful launches', 'Varied enemies and arena hazards', 'Bosses, story, and mixed challenges'],
+    physicsImageAlt: 'A fighter launches an enemy with a blue energy attack',
+    galleryIndex: '03 / INTO THE ARENA',
+    galleryTitle: 'Every fight brings a new twist.',
+    galleryIntro: 'From one on one duels to multiplayer brawls, adapt your tactics to different arenas and enemy combinations.',
+    galleryImageAlts: ['Three players face a lava enemy in a space arena', 'Players duel in a circular arena', 'Gem Warrior title screen'],
+    galleryLabels: ['TEAM BATTLE', 'ARENA', 'MUGEN COMBAT'],
+    galleryCaptions: ['Fight together', 'PvP duel', 'Endless combat'],
+    featuresIndex: '04 / FEATURES',
+    featuresTitle: 'Five ways to enjoy one endless war.',
+    features: [
+      { number: '01', title: 'Build your own fighting style', text: 'Combine skill gems with different ranges, attributes, and effects to create combos for each fighter.' },
+      { number: '02', title: 'Easy controls, deep strategy', text: 'Skill placement and release timing decide the winner. Easy to pick up, rewarding to master.' },
+      { number: '03', title: 'Physics driven impact', text: 'Every collision, launch, and arena interaction is powered by physics for a more immediate feel.' },
+      { number: '04', title: 'Varied arenas and challenges', text: 'Face different enemies, hazards, and bosses, then adapt your lineup as the battlefield changes.' },
+      { number: '05', title: 'Arena PvP', text: 'Test your reactions and tactics against other players and put your build to the test.' },
+    ],
+    downloadIndex: 'THE FIGHT STARTS NOW',
+    downloadTitleLine1: 'Join the',
+    downloadTitleLine2: 'endless fight.',
+    downloadIntro: 'Download for free. Choose your fighter, combine skill gems, and launch opponents out of the arena with physics powered moves.',
+  },
+} as const;
+
+const locale = localeFromPath(Astro.url.pathname);
+const t = copy[locale];
+
+const storeLinks = [
+  {
+    href: site.game.iosUrl,
+    label: t.appStoreLabel,
+    image: '/game/app-store-badge.svg',
+    className: 'store-badge store-badge--apple',
+  },
+  {
+    href: site.game.androidUrl,
+    label: t.googlePlayLabel,
+    image: '/game/google-play-badge.png',
+    className: 'store-badge store-badge--google',
+  },
+];
+---
+
+<BaseLayout
+  title={t.pageTitle}
+  description={t.description}
+  lang={{ zh: 'zh-CN', ja: 'ja', en: 'en' }[locale]}
+  ogImage="/og.png"
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'VideoGame',
+    name: t.gameName,
+    description: t.description,
+    url: new URL(localizedPath(site.game.path, locale), site.url),
+    image: new URL('/game/app-icon.jpg', site.url),
+    applicationCategory: 'GameApplication',
+    operatingSystem: ['iOS', 'Android'],
+    author: { '@type': 'Organization', name: site.name },
+  }}
+>
+  <div id="top" class="page-grid">
+    <Header context="game" />
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid-glow" aria-hidden="true"></div>
+        <div class="shell hero-inner">
+          <div class="hero-copy">
+            <div class="game-lockup">
+              <img src="/game/app-icon.jpg" alt={t.iconAlt} width="112" height="112" />
+              <p>
+                <span>{t.presents}</span>
+                <strong>{t.lockup}</strong>
+              </p>
+            </div>
+
+            <p class="hero-kicker">{t.kicker}</p>
+            <h1 id="hero-title">
+              <span>{t.heroTitle}</span>
+              <em>{t.heroSubtitle}</em>
+            </h1>
+            <p class="hero-lede">{t.heroLede}</p>
+
+            <div class="store-links" aria-label={t.downloadsLabel}>
+              {storeLinks.map((store) => (
+                <a href={store.href} target="_blank" rel="noreferrer" aria-label={store.label}>
+                  <img class={store.className} src={store.image} alt={store.label} />
+                </a>
+              ))}
+            </div>
+            <p class="store-note"><span aria-hidden="true"></span> {t.storeNote} <a href={localizedPath(site.game.privacyPath, locale)}>{t.privacy}</a></p>
+          </div>
+
+          <div class="hero-visual" aria-label={t.heroVisualLabel}>
+            <figure class="hero-screen hero-screen--main">
+              <img src="/game/battle-03.png" alt={t.heroImageAlt} width="1600" height="900" />
+            </figure>
+            <figure class="hero-screen hero-screen--back" aria-hidden="true">
+              <img src="/game/battle-02.png" alt="" width="1600" height="900" />
+            </figure>
+            <div class="impact-chip impact-chip--top" aria-hidden="true">
+              <span>05</span>
+              <strong>{t.hits}</strong>
+            </div>
+            <div class="impact-chip impact-chip--bottom" aria-hidden="true">
+              <span>∞</span>
+              <strong>{t.build}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="combat-strip" aria-label={t.overviewLabel}>
+        <div class="shell combat-strip-inner">
+          {t.overview.map((item, index) => <p><span>{String(index + 1).padStart(2, '0')}</span>{item}</p>)}
+        </div>
+      </section>
+
+      <section id="gameplay" class="section gameplay" aria-labelledby="gameplay-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="section-index">{t.buildIndex}</p>
+            <div>
+              <h2 id="gameplay-title">{t.buildTitleLine1}<br />{t.buildTitleLine2}</h2>
+              <p>{t.buildIntro}</p>
+            </div>
+          </div>
+
+          <div class="build-showcase">
+            <figure class="build-screen">
+              <img src="/game/battle-05.webp" alt={t.buildImageAlt} width="1600" height="740" loading="lazy" />
+              <figcaption>
+                <span>{t.comboLab}</span>
+                <strong>{t.buildCaption}</strong>
+              </figcaption>
+            </figure>
+            <div class="build-stats" aria-label={t.buildStatsLabel}>
+              {t.stats.map((stat) => (
+                <article>
+                  <span>{stat.label}</span>
+                  <strong>{stat.value}</strong>
+                  <p>{stat.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section physics" aria-labelledby="physics-title">
+        <div class="shell physics-grid">
+          <div class="physics-copy">
+            <p class="section-index">{t.physicsIndex}</p>
+            <h2 id="physics-title">{t.physicsTitle}</h2>
+            <p>{t.physicsIntro}</p>
+            <ul>
+              {t.physicsList.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span>{item}</li>)}
+            </ul>
+          </div>
+          <figure class="physics-screen">
+            <img src="/game/battle-04.png" alt={t.physicsImageAlt} width="1600" height="900" loading="lazy" />
+          </figure>
+        </div>
+      </section>
+
+      <section id="gallery" class="section gallery" aria-labelledby="gallery-title">
+        <div class="shell">
+          <div class="gallery-heading">
+            <div>
+              <p class="section-index">{t.galleryIndex}</p>
+              <h2 id="gallery-title">{t.galleryTitle}</h2>
+            </div>
+            <p>{t.galleryIntro}</p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-card gallery-card--wide">
+              <img src="/game/battle-07.webp" alt={t.galleryImageAlts[0]} width="1600" height="740" loading="lazy" />
+              <figcaption><span>{t.galleryLabels[0]}</span><strong>{t.galleryCaptions[0]}</strong></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/game/battle-06.webp" alt={t.galleryImageAlts[1]} width="1600" height="740" loading="lazy" />
+              <figcaption><span>{t.galleryLabels[1]}</span><strong>{t.galleryCaptions[1]}</strong></figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="/game/battle-01.png" alt={t.galleryImageAlts[2]} width="1600" height="900" loading="lazy" />
+              <figcaption><span>{t.galleryLabels[2]}</span><strong>{t.galleryCaptions[2]}</strong></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" aria-labelledby="features-title">
+        <div class="shell">
+          <div class="features-title-row">
+            <p class="section-index">{t.featuresIndex}</p>
+            <h2 id="features-title">{t.featuresTitle}</h2>
+          </div>
+          <div class="feature-grid">
+            {t.features.map((feature) => (
+              <article>
+                <span>{feature.number}</span>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="download" class="download" aria-labelledby="download-title">
+        <div class="download-backdrop" aria-hidden="true"></div>
+        <div class="shell download-inner">
+          <img class="download-icon" src="/game/app-icon.jpg" alt={t.iconAlt} width="152" height="152" loading="lazy" />
+          <p class="section-index">{t.downloadIndex}</p>
+          <h2 id="download-title">{t.downloadTitleLine1}<br />{t.downloadTitleLine2}</h2>
+          <p>{t.downloadIntro}</p>
+          <div class="store-links store-links--center" aria-label={t.downloadsLabel}>
+            {storeLinks.map((store) => (
+              <a href={store.href} target="_blank" rel="noreferrer" aria-label={store.label}>
+                <img class={store.className} src={store.image} alt={store.label} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

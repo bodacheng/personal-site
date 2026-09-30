@@ -3,32 +3,89 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { site } from '../../config/site';
+import { localeFromPath, localizedPath } from '../../i18n';
+
+const locale = localeFromPath(Astro.url.pathname);
+const copy = {
+  zh: {
+    title: `隐私政策｜${site.name}`,
+    description: '查看 HOTARU STUDIO 各项产品的隐私政策。',
+    eyebrow: '隐私中心',
+    headingFirst: '透明说明每件产品',
+    headingSecond: '如何处理信息。',
+    intro: '每项产品的功能与数据流不同，因此分别提供对应政策。',
+    gameCategory: '01 · 游戏',
+    gameSummary: '游戏账户、设备信息、购买、广告及支持相关说明。',
+    pocketCategory: '02 · 游戏',
+    pocketSummary: '账户与游戏进度、购买、广告、诊断及 AI 故事功能的说明。',
+    financeCategory: '03 · 金融工具',
+    financeSummary: 'AI 分析输入、市场数据、本地存储及服务提供商相关说明。',
+    viewPolicy: '查看政策 →',
+  },
+  ja: {
+    title: `プライバシーポリシー｜${site.name}`,
+    description: 'HOTARU STUDIO の各製品のプライバシーポリシーをご覧いただけます。',
+    eyebrow: 'プライバシーセンター',
+    headingFirst: '製品ごとの情報の扱いを',
+    headingSecond: 'わかりやすく。',
+    intro: '製品ごとに機能やデータの取扱いが異なるため、それぞれのポリシーをご用意しています。',
+    gameCategory: '01 · ゲーム',
+    gameSummary: 'ゲームアカウント、端末情報、購入、広告、サポートに関する説明です。',
+    pocketCategory: '02 · ゲーム',
+    pocketSummary: 'アカウント、プレイデータ、購入、広告、診断、AI ストーリー機能について説明します。',
+    financeCategory: '03 · 金融ツール',
+    financeSummary: 'AI 分析の入力情報、市場データ、端末内保存、サービス提供事業者に関する説明です。',
+    viewPolicy: 'ポリシーを見る →',
+  },
+  en: {
+    title: `Privacy Policy | ${site.name}`,
+    description: 'Explore the privacy policies for HOTARU STUDIO products.',
+    eyebrow: 'PRIVACY CENTER',
+    headingFirst: 'Privacy for',
+    headingSecond: 'every product.',
+    intro: 'Each product has different features and data flows, so each has its own policy.',
+    gameCategory: '01 · GAME',
+    gameSummary: 'Details about game accounts, device information, purchases, ads, and support.',
+    pocketCategory: '02 · GAME',
+    pocketSummary: 'Details about accounts, gameplay, purchases, ads, diagnostics, and AI stories.',
+    financeCategory: '03 · FINANCE TOOL',
+    financeSummary: 'Details about AI analysis inputs, market data, local storage, and service providers.',
+    viewPolicy: 'View policy →',
+  },
+} as const;
+const t = copy[locale];
 ---
 
-<BaseLayout title={`隐私政策｜${site.name}`} description="查看 HOTARU STUDIO 各项产品的隐私政策。">
+<BaseLayout title={t.title} description={t.description} lang={locale === 'zh' ? 'zh-CN' : locale}>
   <div id="top" class="privacy-hub">
     <Header context="privacy" />
     <main id="main">
       <section class="privacy-hub-hero">
         <div class="shell">
-          <p>PRIVACY CENTER</p>
-          <h1>透明说明每件产品<br />如何处理信息。</h1>
-          <span>每项产品的功能与数据流不同，因此分别提供对应政策。</span>
+          <p>{t.eyebrow}</p>
+          <h1>{t.headingFirst}<br />{t.headingSecond}</h1>
+          <span>{t.intro}</span>
         </div>
       </section>
       <section class="privacy-list">
         <div class="shell">
-          <a href={site.game.privacyPath}>
-            <span>01 · GAME</span>
+          <a href={localizedPath(site.game.privacyPath, locale)}>
+            <span>{t.gameCategory}</span>
             <img src="/game/app-icon.jpg" alt="" width="72" height="72" />
-            <div><h2>{site.game.name}</h2><p>游戏账户、设备信息、购买、广告及支持相关说明。</p></div>
-            <strong>查看政策 →</strong>
+            <div><h2>{locale === 'en' ? 'Gem Warrior – Mugen Combat War' : site.game.name}</h2><p>{t.gameSummary}</p></div>
+            <strong>{t.viewPolicy}</strong>
           </a>
-          <a href={site.fxtrade.privacyPath}>
-            <span>02 · FINANCE TOOL</span>
+          <a href={localizedPath(site.pocketStriker.privacyPath, locale)}>
+            <span>{t.pocketCategory}</span>
+            <img src="/pocket-striker/app-icon.png" alt="" width="72" height="72" />
+            <div><h2>{site.pocketStriker.name}</h2><p>{t.pocketSummary}</p></div>
+            <strong>{t.viewPolicy}</strong>
+          </a>
+          <a href={localizedPath(site.fxtrade.privacyPath, locale)}>
+            <span>{t.financeCategory}</span>
             <img src="/fxtrade/app-icon.png" alt="" width="72" height="72" />
-            <div><h2>{site.fxtrade.name}</h2><p>AI 分析输入、市场数据、本地存储及服务提供商相关说明。</p></div>
-            <strong>查看政策 →</strong>
+            <div><h2>{site.fxtrade.name}</h2><p>{t.financeSummary}</p></div>
+            <strong>{t.viewPolicy}</strong>
           </a>
         </div>
       </section>

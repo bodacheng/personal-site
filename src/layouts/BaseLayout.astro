@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { site } from '../config/site';
+import { commonCopy, htmlLanguages, localeFromPath, localizedPath, locales, unlocalizedPath } from '../i18n';
 
 interface Props {
   title?: string;
@@ -10,21 +11,25 @@ interface Props {
   ogWidth?: number;
   ogHeight?: number;
   structuredData?: Record<string, unknown>;
+  alternateLanguages?: boolean;
 }
 
+const locale = localeFromPath(Astro.url.pathname);
+const labels = commonCopy[locale];
 const {
-  title = `${site.name}｜${site.title}`,
-  description = site.description,
-  lang = 'zh-CN',
+  title = `${site.name}｜${labels.siteTitle}`,
+  description = labels.siteDescription,
+  lang = htmlLanguages[locale],
   ogImage = '/og.png',
   ogWidth = 1200,
   ogHeight = 630,
+  alternateLanguages = true,
   structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: site.name,
     legalName: site.legalName,
-    description: site.description,
+    description: labels.siteDescription,
     url: site.url,
     email: site.contactEmail,
   },
@@ -32,6 +37,7 @@ const {
 
 const canonical = new URL(Astro.url.pathname, site.url);
 const socialImage = new URL(ogImage, site.url);
+const basePath = unlocalizedPath(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -44,6 +50,10 @@ const socialImage = new URL(ogImage, site.url);
     <meta name="theme-color" content="#080a10" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
+    {alternateLanguages && locales.map((alternateLocale) => (
+      <link rel="alternate" hreflang={htmlLanguages[alternateLocale]} href={new URL(localizedPath(basePath, alternateLocale), site.url)} />
+    ))}
+    {alternateLanguages && <link rel="alternate" hreflang="x-default" href={new URL(basePath, site.url)} />}
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -59,7 +69,7 @@ const socialImage = new URL(ogImage, site.url);
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
-    <a class="skip-link" href="#main">跳到主要内容</a>
+    <a class="skip-link" href="#main">{labels.skip}</a>
     <slot />
   </body>
 </html>

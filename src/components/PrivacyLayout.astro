@@ -3,17 +3,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from './Footer.astro';
 import Header from './Header.astro';
 import { site } from '../config/site';
+import { commonCopy, languageNames, localeFromPath, localizedPath, locales, unlocalizedPath } from '../i18n';
 
 interface Props {
   product: string;
   summary: string;
   backHref: string;
+  backLabel?: string;
+  effectiveDate?: string;
 }
 
-const { product, summary, backHref } = Astro.props;
+const { product, summary, backHref, backLabel, effectiveDate = '2026-07-17' } = Astro.props;
+const locale = localeFromPath(Astro.url.pathname);
+const labels = commonCopy[locale];
+const basePath = unlocalizedPath(Astro.url.pathname);
+const copy = {
+  zh: { date: '生效日期', back: '返回项目页 →' },
+  ja: { date: '施行日', back: 'プロジェクトへ戻る →' },
+  en: { date: 'Effective date', back: 'Back to project →' },
+}[locale];
 ---
 
-<BaseLayout title={`${product} 隐私政策｜${site.name}`} description={summary}>
+<BaseLayout title={`${product} ${labels.privacy}｜${site.name}`} description={summary}>
   <div id="top" class="policy-page">
     <Header context="privacy" />
     <main id="main">
@@ -22,18 +33,18 @@ const { product, summary, backHref } = Astro.props;
           <p>PRIVACY POLICY</p>
           <h1>{product}</h1>
           <div>
-            <span>生效日期 / Effective date</span>
-            <strong>2026-07-17</strong>
+            <span>{copy.date}</span>
+            <strong>{effectiveDate}</strong>
           </div>
         </div>
       </header>
       <div class="policy-language-bar">
         <div class="shell">
-          <span>LANGUAGE</span>
-          <a href="#zh">中文</a>
-          <a href="#ja">日本語</a>
-          <a href="#en">English</a>
-          <a class="policy-back" href={backHref}>返回项目页 →</a>
+          <span>{labels.language.toUpperCase()}</span>
+          {locales.map((choice) => (
+            <a class:list={{ 'is-active': choice === locale }} href={localizedPath(basePath, choice)} hreflang={choice === 'zh' ? 'zh-CN' : choice} aria-current={choice === locale ? 'page' : undefined}>{languageNames[choice]}</a>
+          ))}
+          <a class="policy-back" href={backHref}>{backLabel ?? copy.back}</a>
         </div>
       </div>
       <div class="shell policy-document">
@@ -43,3 +54,12 @@ const { product, summary, backHref } = Astro.props;
     <Footer />
   </div>
 </BaseLayout>
+<script>
+  import { localeFromPath, localizedPath } from '../i18n';
+  const hashLocale = window.location.hash.slice(1);
+  if (hashLocale === 'zh' || hashLocale === 'ja' || hashLocale === 'en') {
+    if (localeFromPath(window.location.pathname) !== hashLocale) {
+      window.location.replace(localizedPath(window.location.pathname, hashLocale) + window.location.search);
+    }
+  }
+</script>

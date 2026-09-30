@@ -22,6 +22,10 @@ npm run check
 npm run build
 ```
 
+## 网站语言
+
+网站提供简体中文、日语和英语。中文使用原有路径，日语和英语分别使用 `/ja/`、`/en/` 前缀；页面顶部的语言切换会保持当前页面。公共导航和路径工具在 `src/i18n.ts`，各页面的三语文案在对应 Astro 页面或 `src/components/pages/` 组件中。更新项目内容时，请同步更新三种语言并运行 `npm run check`、`npm run build`。
+
 ## 内容配置
 
 编辑 `src/config/site.ts`：

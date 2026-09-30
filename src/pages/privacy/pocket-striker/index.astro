@@ -1,0 +1,131 @@
+---
+import PrivacyLayout from '../../../components/PrivacyLayout.astro';
+import { site } from '../../../config/site';
+import { localeFromPath, localizedPath } from '../../../i18n';
+
+const locale = localeFromPath(Astro.url.pathname);
+const copy = {
+  zh: {
+    summary: 'Pocket Striker 的账户、游戏、购买、广告与诊断数据隐私政策。',
+    back: '返回隐私中心 →',
+  },
+  ja: {
+    summary: 'Pocket Striker のアカウント、プレイ、購入、広告、診断データに関するプライバシーポリシー。',
+    back: 'プライバシーセンターへ戻る →',
+  },
+  en: {
+    summary: 'Privacy policy for Pocket Striker accounts, gameplay, purchases, ads, and diagnostics.',
+    back: 'Back to privacy center →',
+  },
+} as const;
+---
+
+<PrivacyLayout
+  product={site.pocketStriker.name}
+  summary={copy[locale].summary}
+  backHref={localizedPath('/privacy/', locale)}
+  backLabel={copy[locale].back}
+  effectiveDate="2026-09-28"
+>
+  <article id="zh" class="policy-language" lang="zh-CN">
+    <p class="policy-label">简体中文</p>
+    <h2>隐私政策</h2>
+    <p>HOTARU STUDIO（运营主体：{site.legalName}，以下简称“我们”）运营 Pocket Striker（以下简称“本游戏”）。本政策说明本游戏在 iOS 和 Android 上处理信息的方式。实际处理情况会因平台、地区、版本及您使用的功能而不同。</p>
+
+    <h3>1. 处理的信息</h3>
+    <ul>
+      <li><strong>账户与设备标识：</strong>PlayFab 玩家 ID、游戏资料，以及用于登录和关联账户的设备标识。iOS 版本可在设备上生成随机标识；Android 版本可使用系统提供的设备标识。您选择绑定或恢复账户时，可能提供电子邮件地址及登录信息。</li>
+      <li><strong>游戏数据：</strong>进度、角色与物品、战斗结果、排行榜、游戏设置及相关操作记录，用于保存和同步游戏状态。</li>
+      <li><strong>购买数据：</strong>商品、购买状态、订单或收据标识。Apple 或 Google 处理付款凭证；本游戏可能通过 PlayFab 验证购买，但不会直接取得完整的支付卡资料。</li>
+      <li><strong>广告与同意信息：</strong>Google Mobile Ads 与 User Messaging Platform（UMP）可能处理同意选择、IP 地址、设备或广告标识、广告展示与互动以及诊断数据，以投放、衡量广告并防止欺诈。</li>
+      <li><strong>诊断与支持信息：</strong>系统及应用版本、设备类型、崩溃或错误、网络和性能信息；您主动发送的邮件、问题描述及附件。启用的版本可能使用 Microsoft App Center 处理分析与崩溃信息。</li>
+      <li><strong>AI 故事信息：</strong>在提供战斗后 AI 故事或图片的版本中，游戏可能通过 PlayFab 和 Azure Functions 处理战斗场景、语言、故事及图片提示词，并调用 Google Gemini 或 Imagen 等服务生成内容。</li>
+    </ul>
+
+    <h3>2. 使用目的</h3>
+    <p>我们使用这些信息来登录和维护账户、保存游戏进度与排行榜、完成和验证购买、提供广告及隐私选择、生成相关游戏内容、分析故障和性能、回复支持请求、防止作弊或欺诈，并履行适用的法律义务。</p>
+
+    <h3>3. 服务提供商</h3>
+    <p>为提供上述功能，信息可能由 Microsoft PlayFab 与 Azure、Google Mobile Ads／UMP 及相关 AI 服务、Apple App Store、Google Play、Unity 购买服务，以及在启用时的 Microsoft App Center 处理。服务商可能依据各自的政策处理技术数据；平台商店的隐私披露应以对应平台的当前版本为准。</p>
+
+    <h3>4. 广告与您的选择</h3>
+    <p>在适用地区，游戏可能通过 UMP 展示同意消息；需要再次选择时，设置页会显示“广告隐私选项”。您还可以通过设备设置管理广告标识和系统授权。购买去广告商品可停止游戏中相应广告的展示，但不会自动删除此前已处理的信息。</p>
+
+    <h3>5. 保存、安全与跨境处理</h3>
+    <p>账户和游戏数据会在提供服务所需期间保存；购买、诊断及支持记录可能因争议处理、安全或法律义务而需要保留。具体期限取决于数据类型和服务商。我们采取合理的安全措施，但无法保证网络传输或存储绝对安全。上述服务商可能在日本以外处理信息。</p>
+
+    <h3>6. 您的权利与账户删除</h3>
+    <p>根据适用法律，您可以请求访问、更正或删除有关信息，或限制、反对特定处理。您可使用游戏设置中的账户删除入口，或发送邮件至 <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>。为防止误删，我们可能需要核验请求；法律要求保留的信息及其他服务商持有的信息可能需要另行处理。</p>
+
+    <h3>7. 儿童、更新与联系</h3>
+    <p>如果您认为儿童在未经适当监护人同意的情况下向我们提供了个人信息，请联系我们。功能、服务商或法律要求变化时，我们可能更新本政策，并在本页公布新的生效日期。隐私问题请联系 <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>。</p>
+  </article>
+
+  <article id="ja" class="policy-language" lang="ja">
+    <p class="policy-label">日本語</p>
+    <h2>プライバシーポリシー</h2>
+    <p>HOTARU STUDIO（運営主体：{site.legalName}、以下「当社」）は Pocket Striker（以下「本ゲーム」）を運営しています。本ポリシーは、iOS・Android 版における情報の取扱いを説明します。実際の取扱いは、プラットフォーム、地域、バージョン、利用する機能によって異なります。</p>
+
+    <h3>1. 取り扱う情報</h3>
+    <ul>
+      <li><strong>アカウント・端末識別子：</strong>PlayFab のプレイヤー ID、ゲームプロフィール、ログインやアカウント連携に使う端末識別子。iOS 版では端末内でランダムな識別子を生成する場合があり、Android 版ではシステムが提供する端末識別子を使用する場合があります。アカウントの連携・復旧を選ぶと、メールアドレスやログイン情報を提供する場合があります。</li>
+      <li><strong>プレイデータ：</strong>進行状況、キャラクター・アイテム、対戦結果、ランキング、設定および関連する操作記録。ゲーム状態の保存・同期に使用します。</li>
+      <li><strong>購入情報：</strong>商品、購入状態、注文・レシートの識別子。決済情報は Apple または Google が処理します。本ゲームは PlayFab を通じて購入を確認する場合がありますが、カード情報全体を直接取得しません。</li>
+      <li><strong>広告・同意情報：</strong>Google Mobile Ads と User Messaging Platform（UMP）は、同意の選択、IP アドレス、端末・広告識別子、広告の表示・操作、診断情報を、広告配信・測定・不正防止のために処理する場合があります。</li>
+      <li><strong>診断・サポート情報：</strong>OS・アプリのバージョン、端末の種類、クラッシュ・エラー、通信・性能情報、お問い合わせメール、問題の説明、添付資料。対応するバージョンでは Microsoft App Center が分析・クラッシュ情報を処理する場合があります。</li>
+      <li><strong>AI ストーリー情報：</strong>対戦後の AI ストーリーや画像を提供するバージョンでは、対戦の場面、言語、ストーリー・画像のプロンプトを PlayFab と Azure Functions 経由で処理し、Google Gemini や Imagen 等のサービスでコンテンツを生成する場合があります。</li>
+    </ul>
+
+    <h3>2. 利用目的</h3>
+    <p>アカウントのログイン・管理、進行状況とランキングの保存、購入の処理・確認、広告とプライバシー選択の提供、関連するゲームコンテンツの生成、障害・性能の分析、サポート、不正行為の防止、法令上の義務の履行に使用します。</p>
+
+    <h3>3. サービス提供事業者</h3>
+    <p>これらの機能のため、Microsoft PlayFab・Azure、Google Mobile Ads／UMP と関連する AI サービス、Apple App Store、Google Play、Unity の購入サービス、利用される場合の Microsoft App Center が情報を処理することがあります。事業者は各自のポリシーに従って技術情報を処理する場合があります。ストアのプライバシー表示は、各プラットフォームの現行版をご確認ください。</p>
+
+    <h3>4. 広告と選択肢</h3>
+    <p>該当する地域では、UMP による同意メッセージが表示される場合があります。選択の変更が必要な場合、設定画面に「広告のプライバシー設定」が表示されます。端末の設定から広告識別子や OS の権限も管理できます。広告非表示の商品を購入すると対象の広告表示は停止しますが、過去に処理された情報が自動的に削除されるわけではありません。</p>
+
+    <h3>5. 保存期間・安全管理・国外処理</h3>
+    <p>アカウントとプレイデータはサービス提供に必要な期間保存します。購入、診断、サポートの記録は、紛争、安全対策、法的義務のために保存する場合があります。具体的な期間はデータの種類と事業者によって異なります。合理的な安全対策を講じますが、通信・保存の完全な安全は保証できません。事業者が日本国外で情報を処理する場合があります。</p>
+
+    <h3>6. 権利とアカウント削除</h3>
+    <p>適用法令に応じて、アクセス、訂正、削除、特定の処理の制限・異議申立てを請求できます。ゲーム内の設定からアカウント削除を開始するか、<a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> にご連絡ください。誤削除防止のため本人確認をお願いする場合があります。法令上の保存義務がある情報や他の事業者が保有する情報は、別途対応が必要な場合があります。</p>
+
+    <h3>7. 子ども・改定・お問い合わせ</h3>
+    <p>子どもが適切な保護者の同意なく個人情報を提供したと思われる場合はご連絡ください。機能、事業者、法令上の要件が変わった場合は本ポリシーを改定し、このページに新しい施行日を表示します。お問い合わせ先：<a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>。</p>
+  </article>
+
+  <article id="en" class="policy-language" lang="en">
+    <p class="policy-label">English</p>
+    <h2>Privacy Policy</h2>
+    <p>HOTARU STUDIO, operated by {site.legalName} (“we”), operates Pocket Striker (the “Game”). This policy explains how information is handled in the iOS and Android versions. Actual processing varies by platform, region, version, and the features you use.</p>
+
+    <h3>1. Information processed</h3>
+    <ul>
+      <li><strong>Account and device identifiers:</strong> a PlayFab player ID, game profile, and a device identifier used to sign in or link an account. The iOS version may create a random identifier on the device; the Android version may use a system-provided device identifier. If you choose to link or recover an account, you may provide an email address and sign-in details.</li>
+      <li><strong>Gameplay data:</strong> progress, characters and items, battle results, leaderboards, settings, and related activity records used to save and synchronize game state.</li>
+      <li><strong>Purchase data:</strong> products, purchase status, and order or receipt identifiers. Apple or Google processes payment credentials. The Game may validate purchases through PlayFab but does not directly receive full payment card details.</li>
+      <li><strong>Advertising and consent data:</strong> Google Mobile Ads and the User Messaging Platform (UMP) may process consent choices, IP address, device or advertising identifiers, ad impressions and interactions, and diagnostics to deliver and measure ads and prevent fraud.</li>
+      <li><strong>Diagnostics and support:</strong> OS and app version, device type, crashes or errors, network and performance data, and messages, issue descriptions, or attachments you send us. Versions where it is enabled may use Microsoft App Center for analytics and crash information.</li>
+      <li><strong>AI story data:</strong> in versions that provide post-battle AI stories or images, the Game may process battle context, language, and story or image prompts through PlayFab and Azure Functions and use services such as Google Gemini or Imagen to generate content.</li>
+    </ul>
+
+    <h3>2. Purposes</h3>
+    <p>We use this information to sign in and maintain accounts, save progress and leaderboards, process and validate purchases, provide ads and privacy choices, generate relevant game content, diagnose faults and performance, respond to support requests, prevent cheating or fraud, and meet applicable legal obligations.</p>
+
+    <h3>3. Service providers</h3>
+    <p>To provide these features, information may be processed by Microsoft PlayFab and Azure, Google Mobile Ads and UMP and related AI services, Apple App Store, Google Play, Unity purchasing services, and Microsoft App Center where enabled. Providers may handle technical data under their own policies. The app store privacy disclosures should be read for the current version on each platform.</p>
+
+    <h3>4. Ads and your choices</h3>
+    <p>In applicable regions, the Game may display a consent message through UMP. When a further choice is required, an “Ad Privacy Choices” entry appears in settings. You can also manage advertising identifiers and system permissions in your device settings. Buying a no-ads product stops the corresponding ads in the Game; it does not automatically erase information processed earlier.</p>
+
+    <h3>5. Retention, security, and international processing</h3>
+    <p>Account and gameplay data is kept while needed to provide the service. Purchase, diagnostic, and support records may be retained for disputes, security, or legal obligations. Specific periods vary by data type and provider. We use reasonable safeguards, but cannot guarantee complete security of transmission or storage. Providers may process information outside Japan.</p>
+
+    <h3>6. Your rights and account deletion</h3>
+    <p>Depending on applicable law, you may request access, correction, deletion, restriction, or objection to certain processing. You can start account deletion in Game settings or email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>. We may verify a request to prevent unauthorized deletion. Information subject to legal retention duties or held by other providers may require separate handling.</p>
+
+    <h3>7. Children, updates, and contact</h3>
+    <p>If you believe a child has provided personal information without appropriate guardian consent, contact us. We may update this policy when features, providers, or legal requirements change and show a new effective date on this page. For privacy questions, email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+  </article>
+</PrivacyLayout>

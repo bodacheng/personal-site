@@ -1,20 +1,23 @@
 ---
 import { site } from '../config/site';
+import { commonCopy, localeFromPath, localizedPath } from '../i18n';
 
 const year = new Date().getFullYear();
+const locale = localeFromPath(Astro.url.pathname);
+const labels = commonCopy[locale];
 ---
 
 <footer class="site-footer">
   <div class="shell footer-inner">
-    <a class="footer-brand" href="/">
+    <a class="footer-brand" href={localizedPath('/', locale)}>
       <span class="studio-mark studio-mark--small" aria-hidden="true">H<span>S</span></span>
       <span>{site.name}</span>
     </a>
     <p>© {year} {site.legalName}</p>
     <div class="footer-links">
-      <a href="/privacy/">隐私政策</a>
-      <a href={`mailto:${site.contactEmail}`}>联系</a>
-      <a href="#top">返回顶部 ↑</a>
+      <a href={localizedPath('/privacy/', locale)}>{labels.privacy}</a>
+      <a href={`mailto:${site.contactEmail}`}>{labels.contact}</a>
+      <a href="#top">{labels.top}</a>
     </div>
   </div>
 </footer>

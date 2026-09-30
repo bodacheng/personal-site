@@ -1,9 +1,17 @@
 ---
 import PrivacyLayout from '../../../components/PrivacyLayout.astro';
 import { site } from '../../../config/site';
+import { localeFromPath, localizedPath } from '../../../i18n';
+
+const locale = localeFromPath(Astro.url.pathname);
+const summaries = {
+  zh: '《魔晶闘士-無限格闘戦争》隐私政策。',
+  ja: '『魔晶闘士-無限格闘戦争』のプライバシーポリシー。',
+  en: 'Privacy policy for Gem Warrior – Mugen Combat War.',
+} as const;
 ---
 
-<PrivacyLayout product={site.game.name} summary="《魔晶闘士-無限格闘戦争》隐私政策。" backHref={site.game.path}>
+<PrivacyLayout product={locale === 'en' ? 'Gem Warrior – Mugen Combat War' : site.game.name} summary={summaries[locale]} backHref={localizedPath(site.game.path, locale)}>
   <article id="zh" class="policy-language" lang="zh-CN">
     <p class="policy-label">简体中文</p>
     <h2>隐私政策</h2>

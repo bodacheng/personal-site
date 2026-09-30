@@ -1,5 +1,6 @@
 ---
 import { site } from '../config/site';
+import { commonCopy, languageNames, localeFromPath, localizedPath, locales, unlocalizedPath } from '../i18n';
 
 interface Props {
   context?: 'home' | 'game' | 'fxtrade' | 'privacy';
@@ -7,30 +8,78 @@ interface Props {
 
 const { context = 'home' } = Astro.props;
 const isHome = context === 'home';
+const locale = localeFromPath(Astro.url.pathname);
+const labels = commonCopy[locale];
+const basePath = unlocalizedPath(Astro.url.pathname);
+const homePath = localizedPath('/', locale);
 ---
 
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="brand studio-brand" href="/" aria-label={`${site.name} 首页`}>
+    <a class="brand studio-brand" href={homePath} aria-label={`${site.name} ${labels.home}`}>
       <span class="studio-mark" aria-hidden="true">H<span>S</span></span>
       <span>
         <strong>{site.name}</strong>
-        <small>INDEPENDENT PRODUCTS</small>
+        <small>{locale === 'zh' ? '独立产品开发' : locale === 'ja' ? 'インディー作品' : 'INDEPENDENT PRODUCTS'}</small>
       </span>
     </a>
 
-    <nav aria-label="主要导航">
+    <nav aria-label={labels.navigation}>
       {isHome ? (
         <>
-          <a href="#head-clash-project">游戏</a>
-          <a href="#fx-project">应用</a>
+          <a href="#head-clash-project">{labels.games}</a>
+          <a href="#fx-project">{labels.apps}</a>
         </>
       ) : (
-        <a href="/#works">全部作品</a>
+        <a href={`${homePath}#works`}>{labels.allWorks}</a>
       )}
-      <a href={isHome ? '#studio' : '/#studio'}>工作室</a>
-      <a href="/privacy/">隐私政策</a>
-      <a class="nav-cta" href={isHome ? '#contact' : '/#contact'}>联系</a>
+      <a href={isHome ? '#studio' : `${homePath}#studio`}>{labels.studio}</a>
+      <a href={localizedPath('/privacy/', locale)}>{labels.privacy}</a>
+      <a class="nav-cta" href={isHome ? '#contact' : `${homePath}#contact`}>{labels.contact}</a>
     </nav>
+    <details class="language-menu" data-language-menu>
+      <summary class="language-trigger" aria-label={`${labels.language}：${languageNames[locale]}`}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
+        </svg>
+        <span class="language-trigger-label">{labels.language}<span aria-hidden="true"> · </span></span>
+        <span>{languageNames[locale]}</span>
+        <svg class="language-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg>
+      </summary>
+      <div class="language-options" aria-label={labels.language}>
+        {locales.map((choice) => (
+          <a
+            class:list={{ 'is-active': choice === locale }}
+            href={localizedPath(basePath, choice)}
+            hreflang={choice === 'zh' ? 'zh-CN' : choice}
+            lang={choice === 'zh' ? 'zh-CN' : choice}
+            aria-current={choice === locale ? 'page' : undefined}
+            data-language-link
+          ><span>{languageNames[choice]}</span><span aria-hidden="true">{choice === locale ? '✓' : ''}</span></a>
+        ))}
+      </div>
+    </details>
   </div>
 </header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('[data-language-menu]');
+  document.querySelectorAll<HTMLAnchorElement>('[data-language-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const destination = new URL(link.href);
+      destination.search = window.location.search;
+      destination.hash = ['#zh', '#ja', '#en'].includes(window.location.hash) ? '' : window.location.hash;
+      if (destination.href === window.location.href) event.preventDefault();
+      else link.href = destination.href;
+      if (menu) menu.open = false;
+    });
+  });
+  document.addEventListener('click', (event) => {
+    if (menu?.open && !menu.contains(event.target as Node)) menu.open = false;
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.open) {
+      menu.open = false;
+      menu.querySelector<HTMLElement>('summary')?.focus();
+    }
+  });
+</script>

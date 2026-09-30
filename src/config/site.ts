@@ -53,6 +53,10 @@ export const site = {
       },
     ],
   },
+  pocketStriker: {
+    name: 'Pocket Striker',
+    privacyPath: '/privacy/pocket-striker/',
+  },
   fxtrade: {
     name: 'USD/JPY Advice',
     projectName: 'FXTrade',

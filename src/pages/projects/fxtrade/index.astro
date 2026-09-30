@@ -3,17 +3,40 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Footer from '../../../components/Footer.astro';
 import Header from '../../../components/Header.astro';
 import { site } from '../../../config/site';
+import { localeFromPath, localizedPath } from '../../../i18n';
+
+const locale = localeFromPath(Astro.url.pathname);
+const c = {
+  zh: {
+    description: site.fxtrade.description, iconAlt: 'USD/JPY Advice 应用图标', coming: 'iOS · 即将推出', kicker: '面向 USD/JPY 的 AI 决策辅助', lede: '把实时行情、技术指标、持仓和风险条件放在同一个判断画面里。AI 分析给出结构化参考，但最终决定始终由你掌握。', availability: '准备提交 · 尚未上线', interfaceAlt: '应用界面预览', overviewAlt: '实时行情、趋势指标和资金输入界面', adviceAlt: 'AI 交易建议与风险说明界面（简体中文）', featuresLabel: '主要功能', ticker: ['实时汇率', '1 / 5 / 15 分钟蜡烛图', '仓位输入', 'AI 分析'], trend: '趋势', risk: '风险', visible: '清晰可见', modeLabel: '模式', outputLabel: '输出', languageLabel: '语言',
+    overviewIndex: '01 / ONE DECISION VIEW', overviewTitle: '看清行情，也看清自己的风险。', overviewText: 'USD/JPY 的价格会自动更新。趋势分数、RSI、ATR、资金与当前净持仓被一起纳入分析，减少在多个画面之间反复切换。', features: [['实时行情', '显示 USD/JPY 实时报价，以及 1 分、5 分、15 分蜡烛图。'], ['技术指标', '用趋势图、趋势分数、RSI 与 ATR 整理方向和波动性。'], ['仓位条件', '输入本金、净持仓数量与建仓价，让建议对应你的实际条件。'], ['两种模式', '“谨慎”和“积极”两种分析方式，清楚显示不确定性。']],
+    interfaceIndex: '02 / BUILT FOR CLARITY', interfaceTitle: '建议不是一个方向箭头。', interfaceText: '每次分析同时给出参考方向、建仓数量、置信度、判断理由、预计保证金使用率与风险提示。支持日语、英语和简体中文。', mode: '谨慎 / 积极', output: '方向 · 数量 · 置信度', jaScreenAlt: '日语版 USD/JPY Advice 界面', enScreenAlt: '英语版 USD/JPY Advice 界面',
+    riskIndex: '03 / IMPORTANT', riskTitle1: '这是决策辅助工具，', riskTitle2: '不是交易执行服务。', riskText: '本应用不连接券商账户、不代替用户下单，也不保证收益。AI 分析和市场数据可能延迟、出错、中断或缺失，显示内容不构成针对个人的投资建议。外汇保证金交易存在重大亏损风险，请独立判断并自行承担结果。', privacyLink: '查看 FXTrade 隐私政策',
+  },
+  ja: {
+    description: 'USD/JPY のリアルタイム相場、テクニカル指標、建玉、証拠金条件を一つの画面にまとめ、AI 分析による構造化された判断材料を提供します。', iconAlt: 'USD/JPY Advice のアプリアイコン', coming: 'iOS · 公開予定', kicker: 'USD/JPY の AI 判断支援', lede: 'リアルタイム相場、テクニカル指標、建玉、リスク条件を一つの判断画面に。AI 分析が整理された参考情報を示しますが、最終判断は常にユーザー自身が行います。', availability: '申請準備中 · 未公開', interfaceAlt: 'アプリ画面のプレビュー', overviewAlt: '相場、トレンド指標、資金入力を表示する画面', adviceAlt: 'AI 分析とリスク説明の画面（簡体字中国語版）', featuresLabel: '主な機能', ticker: ['リアルタイム相場', '1・5・15分足', '建玉入力', 'AI 分析'], trend: 'トレンド', risk: 'リスク', visible: '見える化', modeLabel: 'モード', outputLabel: '出力', languageLabel: '言語',
+    overviewIndex: '01 / ONE DECISION VIEW', overviewTitle: '相場と自分のリスクを、一画面で。', overviewText: 'USD/JPY の価格は自動更新されます。トレンドスコア、RSI、ATR、元本、現在のネットポジションを一緒に分析し、画面を行き来する手間を減らします。', features: [['リアルタイム相場', 'USD/JPY のリアルタイム価格と、1分・5分・15分足のローソク足を表示します。'], ['テクニカル指標', 'トレンドチャート、トレンドスコア、RSI、ATR で方向と変動幅を整理します。'], ['建玉条件', '元本、ネットポジション数量、建値を入力し、自分の条件に即した参考情報を確認できます。'], ['二つのモード', '「慎重」と「積極」の分析モードで、不確実性も明確に示します。']],
+    interfaceIndex: '02 / BUILT FOR CLARITY', interfaceTitle: '提案は、単なる方向の矢印ではありません。', interfaceText: '分析ごとに参考方向、建玉数量、信頼度、判断理由、推定証拠金使用率、リスク上の注意点を表示します。日本語、英語、簡体字中国語に対応しています。', mode: '慎重 / 積極', output: '方向 · 数量 · 信頼度', jaScreenAlt: '日本語版 USD/JPY Advice の画面', enScreenAlt: '英語版 USD/JPY Advice の画面',
+    riskIndex: '03 / IMPORTANT', riskTitle1: '判断を支援するツールです。', riskTitle2: '取引を実行するサービスではありません。', riskText: '本アプリは証券会社の口座に接続せず、ユーザーに代わって注文せず、利益を保証しません。AI 分析や市場データには遅延、誤り、中断、欠落が生じる場合があります。表示内容は個別の投資助言ではありません。外国為替証拠金取引には大きな損失リスクがあります。ご自身で判断し、結果に責任を負ってください。', privacyLink: 'FXTrade のプライバシーポリシーを見る',
+  },
+  en: {
+    description: 'Bring live USD/JPY quotes, technical indicators, positions, and margin conditions into one view, with structured AI analysis to support your decisions.', iconAlt: 'USD/JPY Advice app icon', coming: 'iOS · COMING SOON', kicker: 'AI DECISION SUPPORT FOR USD/JPY', lede: 'See live prices, technical indicators, positions, and risk conditions in one decision view. AI analysis offers structured reference information; the final decision is always yours.', availability: 'Preparing for submission · Not yet available', interfaceAlt: 'App interface preview', overviewAlt: 'Live prices, trend indicators, and capital input screen', adviceAlt: 'AI analysis and risk notes screen (Simplified Chinese version)', featuresLabel: 'Key features', ticker: ['LIVE RATE', '1 / 5 / 15 MIN CANDLES', 'POSITION INPUT', 'AI ANALYSIS'], trend: 'TREND', risk: 'RISK', visible: 'VISIBLE', modeLabel: 'MODE', outputLabel: 'OUTPUT', languageLabel: 'LANGUAGE',
+    overviewIndex: '01 / ONE DECISION VIEW', overviewTitle: 'See the market and your own risk together.', overviewText: 'USD/JPY prices update automatically. Trend score, RSI, ATR, capital, and your current net position feed into one analysis, reducing the need to switch between screens.', features: [['Live market data', 'View live USD/JPY quotes and 1, 5, and 15 minute candlestick charts.'], ['Technical indicators', 'Use trend charts, trend score, RSI, and ATR to assess direction and volatility.'], ['Position context', 'Enter your capital, net position size, and entry price so the analysis reflects your situation.'], ['Two modes', 'Choose cautious or active analysis, with uncertainty shown clearly.']],
+    interfaceIndex: '02 / BUILT FOR CLARITY', interfaceTitle: 'More than a directional arrow.', interfaceText: 'Each analysis shows a reference direction, position size, confidence, reasoning, estimated margin usage, and risk notes. The app supports Japanese, English, and Simplified Chinese.', mode: 'Cautious / Active', output: 'Direction · Size · Confidence', jaScreenAlt: 'Japanese USD/JPY Advice interface', enScreenAlt: 'English USD/JPY Advice interface',
+    riskIndex: '03 / IMPORTANT', riskTitle1: 'A decision support tool,', riskTitle2: 'not a trade execution service.', riskText: 'The app does not connect to a broker account, place orders for you, or guarantee returns. AI analysis and market data may be delayed, inaccurate, interrupted, or unavailable. Displayed content is not personalized investment advice. Foreign exchange margin trading carries a substantial risk of loss. Make your own decisions and accept responsibility for the outcome.', privacyLink: 'Read the FXTrade privacy policy',
+  },
+}[locale];
 ---
 
 <BaseLayout
-  title={`${site.fxtrade.name}（FXTrade）｜${site.name}`}
-  description={site.fxtrade.description}
+  title={`${site.fxtrade.name}${locale === 'en' ? ' (FXTrade) | ' : '（FXTrade）｜'}${site.name}`}
+  description={c.description}
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: site.fxtrade.name,
     alternateName: site.fxtrade.projectName,
-    description: site.fxtrade.description,
+    description: c.description,
     applicationCategory: 'FinanceApplication',
     operatingSystem: 'iOS',
     author: { '@type': 'Organization', name: site.name },
@@ -27,71 +50,68 @@ import { site } from '../../../config/site';
         <div class="shell fx-hero-inner">
           <div class="fx-copy">
             <div class="fx-app-lockup">
-              <img src="/fxtrade/app-icon.png" alt="USD/JPY Advice 应用图标" width="112" height="112" />
-              <p><span>FXTRADE PROJECT</span><strong>iOS · COMING SOON</strong></p>
+              <img src="/fxtrade/app-icon.png" alt={c.iconAlt} width="112" height="112" />
+              <p><span>FXTRADE PROJECT</span><strong>{c.coming}</strong></p>
             </div>
-            <p class="fx-kicker">AI DECISION SUPPORT FOR USD/JPY</p>
+            <p class="fx-kicker">{c.kicker}</p>
             <h1 id="fx-title">USD/JPY<br /><em>Advice</em></h1>
-            <p class="fx-lede">把实时行情、技术指标、持仓和风险条件放在同一个判断画面里。AI 分析给出结构化参考，但最终决定始终由你掌握。</p>
-            <div class="fx-availability"><span>APP STORE</span><strong>准备提交 · 尚未上线</strong></div>
+            <p class="fx-lede">{c.lede}</p>
+            <div class="fx-availability"><span>APP STORE</span><strong>{c.availability}</strong></div>
           </div>
-          <div class="fx-phones" aria-label="应用界面预览">
-            <figure class="fx-phone fx-phone--main"><img src="/fxtrade/screen-overview-zh.png" alt="实时行情、趋势指标和资金输入界面" width="1242" height="2688" /></figure>
-            <figure class="fx-phone fx-phone--side"><img src="/fxtrade/screen-advice-zh.png" alt="AI 交易建议与风险说明界面" width="1242" height="2688" /></figure>
-            <div class="fx-data-chip fx-data-chip--trend"><span>TREND</span><strong>RSI · ATR</strong></div>
-            <div class="fx-data-chip fx-data-chip--risk"><span>RISK</span><strong>VISIBLE</strong></div>
+          <div class="fx-phones" aria-label={c.interfaceAlt}>
+            <figure class="fx-phone fx-phone--main"><img src={`/fxtrade/screen-overview-${locale}.png`} alt={c.overviewAlt} width="1242" height="2688" /></figure>
+            <figure class="fx-phone fx-phone--side"><img src="/fxtrade/screen-advice-zh.png" alt={c.adviceAlt} width="1242" height="2688" /></figure>
+            <div class="fx-data-chip fx-data-chip--trend"><span>{c.trend}</span><strong>RSI · ATR</strong></div>
+            <div class="fx-data-chip fx-data-chip--risk"><span>{c.risk}</span><strong>{c.visible}</strong></div>
           </div>
         </div>
       </section>
 
-      <section class="fx-ticker" aria-label="主要功能">
-        <div class="shell"><span>REAL-TIME RATE</span><span>1M · 5M · 15M CANDLES</span><span>POSITION INPUT</span><span>AI ANALYSIS</span></div>
+      <section class="fx-ticker" aria-label={c.featuresLabel}>
+        <div class="shell">{c.ticker.map((item) => <span>{item}</span>)}</div>
       </section>
 
       <section class="fx-overview" aria-labelledby="fx-overview-title">
         <div class="shell fx-overview-grid">
           <div>
-            <p class="fx-section-index">01 / ONE DECISION VIEW</p>
-            <h2 id="fx-overview-title">看清行情，也看清自己的风险。</h2>
+            <p class="fx-section-index">{c.overviewIndex}</p>
+            <h2 id="fx-overview-title">{c.overviewTitle}</h2>
           </div>
-          <p>USD/JPY 的价格会自动更新。趋势分数、RSI、ATR、资金与当前净持仓被一起纳入分析，减少在多个画面之间反复切换。</p>
+          <p>{c.overviewText}</p>
         </div>
         <div class="shell fx-feature-grid">
-          <article><span>01</span><h3>实时行情</h3><p>显示 USD/JPY 实时报价，以及 1 分、5 分、15 分蜡烛图。</p></article>
-          <article><span>02</span><h3>技术指标</h3><p>用趋势图、趋势分数、RSI 与 ATR 整理方向和波动性。</p></article>
-          <article><span>03</span><h3>仓位条件</h3><p>输入本金、净持仓数量与建仓价，让建议对应你的实际条件。</p></article>
-          <article><span>04</span><h3>两种模式</h3><p>“谨慎”和“积极”两种分析方式，清楚显示不确定性。</p></article>
+          {c.features.map(([title, description], index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{description}</p></article>)}
         </div>
       </section>
 
       <section class="fx-interface" aria-labelledby="fx-interface-title">
         <div class="shell fx-interface-grid">
           <figure>
-            <img src="/fxtrade/screen-overview-ja.png" alt="日语版 USD/JPY Advice 界面" width="1242" height="2688" loading="lazy" />
+            <img src="/fxtrade/screen-overview-ja.png" alt={c.jaScreenAlt} width="1242" height="2688" loading="lazy" />
           </figure>
           <div>
-            <p class="fx-section-index">02 / BUILT FOR CLARITY</p>
-            <h2 id="fx-interface-title">建议不是一个方向箭头。</h2>
-            <p>每次分析同时给出参考方向、建仓数量、置信度、判断理由、预计保证金使用率与风险提示。支持日语、英语和简体中文。</p>
+            <p class="fx-section-index">{c.interfaceIndex}</p>
+            <h2 id="fx-interface-title">{c.interfaceTitle}</h2>
+            <p>{c.interfaceText}</p>
             <ul>
-              <li><span>MODE</span>谨慎 / 积极</li>
-              <li><span>OUTPUT</span>方向 · 数量 · 置信度</li>
-              <li><span>LANGUAGE</span>日本語 · English · 简体中文</li>
+              <li><span>{c.modeLabel}</span>{c.mode}</li>
+              <li><span>{c.outputLabel}</span>{c.output}</li>
+              <li><span>{c.languageLabel}</span>日本語 · English · 简体中文</li>
             </ul>
           </div>
           <figure>
-            <img src="/fxtrade/screen-overview-en.png" alt="英语版 USD/JPY Advice 界面" width="1242" height="2688" loading="lazy" />
+            <img src="/fxtrade/screen-overview-en.png" alt={c.enScreenAlt} width="1242" height="2688" loading="lazy" />
           </figure>
         </div>
       </section>
 
       <section class="fx-disclaimer" aria-labelledby="risk-title">
         <div class="shell disclaimer-grid">
-          <p class="fx-section-index">03 / IMPORTANT</p>
+          <p class="fx-section-index">{c.riskIndex}</p>
           <div>
-            <h2 id="risk-title">这是决策辅助工具，<br />不是交易执行服务。</h2>
-            <p>本应用不连接券商账户、不代替用户下单，也不保证收益。AI 分析和市场数据可能延迟、出错、中断或缺失，显示内容不构成针对个人的投资建议。外汇保证金交易存在重大亏损风险，请独立判断并自行承担结果。</p>
-            <a href={site.fxtrade.privacyPath}>查看 FXTrade 隐私政策 <span>→</span></a>
+            <h2 id="risk-title">{c.riskTitle1}<br />{c.riskTitle2}</h2>
+            <p>{c.riskText}</p>
+            <a href={localizedPath(site.fxtrade.privacyPath, locale)}>{c.privacyLink} <span>→</span></a>
           </div>
         </div>
       </section>
