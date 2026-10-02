@@ -13,6 +13,7 @@ export const site = {
     description:
       '先选择走位，再同时弹射角色的头部。利用石柱与边墙反弹，绕开颈部防守，击中对手身体，赢下同步回合制物理对决。',
     path: '/projects/head-clash/',
+    privacyPath: '/privacy/head-clash/',
     status: '开发中',
   },
   game: {

@@ -1,0 +1,130 @@
+---
+import PrivacyLayout from '../../../components/PrivacyLayout.astro';
+import { site } from '../../../config/site';
+import { htmlLanguages, languageNames, localeFromPath, localizedPath } from '../../../i18n';
+
+const locale = localeFromPath(Astro.url.pathname);
+const copy = {
+  zh: {
+    name: '飞头大战 / Head Clash',
+    summary: '飞头大战的账户、云端进度、战绩、排行榜、购买、广告和隐私请求说明。',
+    heading: '隐私政策',
+    intro: `HOTARU STUDIO（运营主体：${site.legalName}，以下简称“我们”）运营《飞头大战》（Head Clash，以下简称“本游戏”）。本政策说明本游戏如何处理信息。具体处理情况取决于平台、版本、地区和您使用的功能。`,
+    accountTitle: '1. 账户与游戏数据',
+    accountItems: [
+      '首次建立游客账号时，您提供昵称，游戏在设备上生成随机安装标识。PlayFab 保存与其关联的玩家账号；此安装标识不是硬件序列号。昵称会显示给对手，并可能出现在每周排行榜和战绩中。请不要使用真实姓名或联系方式作为昵称。',
+      '您选择绑定或恢复账号时，游戏通过 Apple 或 Google Play Games 的原生授权处理平台账号标识和授权凭据。当前 Apple 登录不请求您的姓名或邮箱。此前建立的账号可使用原有账号名和密码登录。',
+      'PlayFab 与 Microsoft Azure 服务处理匹配、账号和游戏资料。Azure Cosmos DB 保存积分、已解锁及装备的装扮、主题挑战进度、对局状态、最近十局在线战绩、分享奖励领取状态和每周积分。战绩包含双方昵称、玩家标识、时间、地图、结果及积分；排行榜展示昵称、积分和名次。',
+      '在线对战还会向服务器发送网络延迟测量，并按玩家保存在对局文档中，用于调整对战播放时序及改善网络表现。',
+      '我们使用上述数据来登录和恢复账号、同步进度、提供匹配与对战、结算奖励、显示排行榜并防止作弊和重复领取。游客注册接口使用安装标识和网络地址的哈希计数来限制滥用。',
+    ],
+    purchaseTitle: '2. 购买与本机设置',
+    purchaseText: '提供去广告商品的平台版本会通过 Apple App Store 或 Google Play 和 Unity IAP 查询商品、处理交易及恢复购买。当前游戏在设备上缓存去广告权益，并根据商店返回的交易状态更新；没有将购买收据上传到本游戏的 PlayFab 或 Azure 后端。完整支付卡资料由平台商店处理，我们不直接取得。语言、音量和本机登录凭据保存在设备上；去广告权益也不会因退出游戏账号而自动消失。',
+    adsTitle: '3. 广告及隐私选择',
+    adsText: '移动版本集成 Google Mobile Ads（AdMob）和 User Messaging Platform（UMP）。根据您的选择、地区、权限和版本，这些 SDK 可能处理 IP 地址及由其估计的粗略位置、应用或设备标识、广告展示与点击、应用互动、崩溃和性能等诊断数据，用于广告提供、衡量、分析、安全和同意管理。',
+    adsChoice: '当前 iOS 实现不请求 App Tracking Transparency（ATT）授权。未获授权时，Google 不会在广告请求中发送 IDFA，但应用或发布者范围的标识及其他上述技术数据仍可能被处理。在需要重新选择的地区，可在游戏去广告页面使用“广告隐私设置”；设备的系统隐私设置也可管理相关权限。购买去广告权益停止相应广告展示，并不会自动删除此前处理的信息。',
+    shareTitle: '4. 分享与支持',
+    shareText: 'X 分享入口会打开 X 的发帖页面，并预填游戏介绍和商店链接；您可以编辑或取消。游戏没有读取您的 X 账号或帖子，也没有取得发帖回执。分享奖励领取状态按游戏账号保存。您主动联系支持时，邮件服务和我们会处理您发送的邮箱地址、问题描述及附件，以回复和解决请求。请不要发送密码或授权令牌。',
+    providersTitle: '5. 服务商、保存与安全',
+    providersText: 'Microsoft PlayFab、Azure Functions 与 Cosmos DB 提供账号、匹配和云端游戏服务；Google AdMob 与 UMP 提供广告和隐私选择；Apple、Google Play 与 Unity IAP 提供平台登录或购买相关服务。信息可能由这些服务商在日本或其他国家处理。',
+    retentionText: '游戏账号资料和积分结算收据当前没有自动到期设置，用于保存进度和防止重复发奖。最近十局战绩保存在账号资料中；已完成并结算的对局文档在最后更新七天后到期，每周榜单快照保留九十天，游客注册限流计数保留两天。尚待结算的对局会保留以完成发奖。平台商店及其他服务商的数据依其政策保存。支持邮件按处理请求及必要法律义务的需要保存。',
+    securityText: '游戏服务请求使用 HTTPS，并限制对账号与服务器资料的访问。任何网络传输或存储都无法保证绝对安全。',
+    rightsTitle: '6. 您的请求与联系',
+    rightsText: '如需请求访问、更正、删除账号或相关数据，或咨询适用的隐私权利，请联系以下邮箱。我们可能需要核验账号归属以防止误删；依法必须保留的记录和平台商店持有的信息可能需要分别处理。',
+    contactLabel: '隐私与游戏支持：',
+    childrenTitle: '7. 儿童与政策更新',
+    childrenText: '请遵循平台商店显示的年龄分级。如果您认为儿童在未经适当监护人同意的情况下向我们提供了个人信息，请联系我们。功能、处理方式或服务商变化时，我们会在本页更新政策及日期。',
+    providerLinks: '服务商的隐私说明',
+  },
+  ja: {
+    name: 'ヘッドクラッシュ / Head Clash',
+    summary: 'ヘッドクラッシュのアカウント、クラウド保存、対戦履歴、ランキング、購入、広告、プライバシーに関する請求について説明します。',
+    heading: 'プライバシーポリシー',
+    intro: `HOTARU STUDIO（運営主体：${site.legalName}、以下「当社」）は『ヘッドクラッシュ』（Head Clash、以下「本ゲーム」）を運営しています。本ポリシーは情報の取扱いを説明します。実際の取扱いは、プラットフォーム、バージョン、地域および利用機能によって異なります。`,
+    accountTitle: '1. アカウントとプレイデータ',
+    accountItems: [
+      'ゲストアカウントの作成時にニックネームを入力し、ゲームが端末内でランダムなインストール識別子を生成します。PlayFab が対応するプレイヤーアカウントを保存します。この識別子はハードウェアのシリアル番号ではありません。ニックネームは対戦相手、週間ランキング、対戦履歴に表示される場合があります。実名や連絡先をニックネームに使用しないでください。',
+      '連携や復旧を選択した場合、Apple または Google Play Games の認証により、プラットフォームのアカウント識別子と認証情報を処理します。現在の Apple ログインは氏名やメールアドレスを要求しません。以前のアカウントは既存のユーザー名とパスワードでログインできます。',
+      'PlayFab と Microsoft Azure がアカウント、マッチング、ゲームプロフィールを処理します。Azure Cosmos DB にポイント、解放・装備した外見、テーマチャレンジの進行状況、対戦状態、直近十試合のオンライン対戦履歴、シェア報酬の受取状態、週間ポイントを保存します。対戦履歴には双方のニックネーム、プレイヤー識別子、日時、マップ、結果、ポイントが含まれます。ランキングはニックネーム、ポイント、順位を表示します。',
+      'オンライン対戦では通信の遅延時間をサーバーに送信し、プレイヤーごとに対戦文書へ保存します。対戦再生のタイミング調整と通信性能の改善に使用します。',
+      'これらの情報はログイン・復旧、進行状況の同期、マッチング・対戦、報酬の処理、ランキング、不正や報酬の重複受取の防止に使います。ゲスト登録では、インストール識別子とネットワークアドレスのハッシュによる回数制限を使用します。',
+    ],
+    purchaseTitle: '2. 購入と端末内の設定',
+    purchaseText: '広告非表示の商品を提供するプラットフォーム版では、Apple App Store または Google Play と Unity IAP が商品照会、購入、復元を処理します。現在のゲームは広告非表示の権利を端末内に保存し、ストアの取引状態に基づいて更新します。購入レシートを本ゲームの PlayFab・Azure バックエンドに送信しません。決済カード情報全体はストアが処理し、当社は直接取得しません。言語、音量、端末のログイン情報も端末内に保存されます。ゲームアカウントからログアウトしても、広告非表示の権利は自動的には失われません。',
+    adsTitle: '3. 広告とプライバシーの選択',
+    adsText: 'モバイル版は Google Mobile Ads（AdMob）と User Messaging Platform（UMP）を利用します。選択、地域、権限、バージョンに応じて、IP アドレスとその推定によるおおよその位置、アプリ・端末識別子、広告の表示・クリック、アプリの操作、クラッシュ・性能等の診断情報を、広告配信・測定・分析、安全対策、同意管理のために処理する場合があります。',
+    adsChoice: '現在の iOS 実装は App Tracking Transparency（ATT）の許可を要求しません。許可されていない場合、Google は広告リクエストに IDFA を送信しませんが、アプリ・パブリッシャーの範囲内の識別子や上記の技術情報は処理される場合があります。選択の変更が必要な地域では、広告非表示の画面にある「広告のプライバシー設定」を利用できます。端末のプライバシー設定でも権限を管理できます。広告非表示の商品は対象の広告表示を停止しますが、過去に処理された情報を自動的に削除するものではありません。',
+    shareTitle: '4. シェアとサポート',
+    shareText: 'X のシェア機能は、ゲーム紹介とストアリンクを入力した投稿画面を開きます。編集やキャンセルが可能です。ゲームは X アカウントや投稿を読み取らず、投稿完了の証明も受け取りません。シェア報酬の受取状態はゲームアカウントごとに保存します。サポートへのご連絡では、メールサービスと当社が送信元のメールアドレス、問題の説明、添付資料を処理して対応します。パスワードや認証トークンを送らないでください。',
+    providersTitle: '5. 事業者・保存期間・安全管理',
+    providersText: 'Microsoft PlayFab、Azure Functions、Cosmos DB がアカウント、マッチング、クラウド上のゲーム機能を提供します。Google AdMob と UMP が広告とプライバシーの選択を提供します。Apple、Google Play、Unity IAP がプラットフォーム認証や購入関連の機能を提供します。情報は日本または他国で処理される場合があります。',
+    retentionText: 'アカウント情報とポイントの処理記録には現在、自動失効の設定がありません。進行状況の維持と報酬の重複防止に使用します。直近十試合の履歴はアカウント情報に保存します。終了して報酬処理を終えた対戦文書は最終更新から七日後、週間ランキングのスナップショットは九十日後、ゲスト登録の回数制限記録は二日後に失効します。報酬処理待ちの対戦は処理のため保存します。ストア等の事業者は各自のポリシーに従って保存します。サポートメールは対応と必要な法的義務のために保存します。',
+    securityText: 'ゲームサービスへの通信は HTTPS を使用し、アカウントとサーバー情報へのアクセスを制限します。ただし、通信や保存の完全な安全を保証することはできません。',
+    rightsTitle: '6. ご請求とお問い合わせ',
+    rightsText: 'アカウントや関連情報へのアクセス、訂正、削除の請求、または適用されるプライバシー上の権利については、下記のメールアドレスへご連絡ください。誤削除防止のためアカウントの所有確認をお願いする場合があります。法令上保存が必要な記録やストアが保有する情報は、別途対応が必要になる場合があります。',
+    contactLabel: 'プライバシー・ゲームサポート：',
+    childrenTitle: '7. 子どもとポリシーの改定',
+    childrenText: 'ストアに表示される年齢区分に従ってください。子どもが適切な保護者の同意なく個人情報を提供したと思われる場合はご連絡ください。機能、取扱い、事業者が変更された場合は、このページのポリシーと日付を更新します。',
+    providerLinks: '事業者のプライバシーに関する説明',
+  },
+  en: {
+    name: 'Head Clash',
+    summary: 'Head Clash privacy information for accounts, cloud progress, battle history, leaderboards, purchases, ads, and privacy requests.',
+    heading: 'Privacy Policy',
+    intro: `HOTARU STUDIO, operated by ${site.legalName} (“we”), operates Head Clash (the “Game”). This policy explains how the Game handles information. Processing varies by platform, version, region, and the features you use.`,
+    accountTitle: '1. Accounts and gameplay data',
+    accountItems: [
+      'When you create a guest account, you enter a nickname and the Game generates a random installation identifier on your device. PlayFab stores the associated player account. This identifier is not a hardware serial number. Your nickname is shown to opponents and may appear in weekly leaderboards and battle history. Avoid using a real name or contact details as your nickname.',
+      'If you choose to link or recover an account, native Apple or Google Play Games authorization processes platform account identifiers and authorization credentials. The current Apple sign-in implementation does not request your name or email. Older accounts can sign in with their existing username and password.',
+      'PlayFab and Microsoft Azure services process accounts, matchmaking, and game profiles. Azure Cosmos DB stores points, unlocked and equipped cosmetics, themed challenge progress, match state, the ten most recent online battles, share reward claim status, and weekly points. Battle history includes both players’ nicknames and identifiers, time, map, result, and points. Leaderboards display nicknames, points, and ranks.',
+      'Online battles also send network latency measurements to the server, where they are stored per player in the match document to adjust playback timing and improve network performance.',
+      'We use this data for sign-in and recovery, cloud progress, matchmaking and battles, rewards, leaderboards, and prevention of cheating or duplicate rewards. Guest registration uses hashed installation identifiers and network addresses to limit abuse.',
+    ],
+    purchaseTitle: '2. Purchases and local settings',
+    purchaseText: 'Platform versions offering an ad-removal product use Apple App Store or Google Play and Unity IAP to query products, process transactions, and restore purchases. The current Game caches ad-removal entitlement on your device and updates it from store transaction status. It does not upload purchase receipts to the Game’s PlayFab or Azure backend. The store handles full payment card details; we do not receive them directly. Language, volume, and local sign-in credentials are stored on your device. Signing out of a game account does not automatically remove an ad-removal entitlement.',
+    adsTitle: '3. Ads and privacy choices',
+    adsText: 'Mobile versions integrate Google Mobile Ads (AdMob) and the User Messaging Platform (UMP). Depending on your choices, region, permissions, and version, these SDKs may process IP addresses and the approximate location estimated from them, app or device identifiers, ad views and clicks, app interactions, and crash, performance, or other diagnostic data for ad delivery, measurement, analytics, security, and consent management.',
+    adsChoice: 'The current iOS implementation does not request App Tracking Transparency (ATT) authorization. Without authorization, Google does not send IDFA in ad requests, but app- or publisher-scoped identifiers and the other technical data described above may still be processed. Where a privacy choice needs to be offered again, use “Ad privacy settings” on the ad-removal screen. Device privacy settings also control relevant permissions. An ad-removal purchase stops the corresponding ads; it does not automatically delete information previously processed.',
+    shareTitle: '4. Sharing and support',
+    shareText: 'The X sharing feature opens X’s post composer with a game introduction and store link. You can edit or cancel the post. The Game does not read your X account or posts and does not receive proof of posting. Share reward claim status is stored against your game account. If you contact support, our email provider and we process the email address, issue description, and attachments you send to respond to your request. Do not send passwords or authorization tokens.',
+    providersTitle: '5. Providers, retention, and security',
+    providersText: 'Microsoft PlayFab, Azure Functions, and Cosmos DB provide accounts, matchmaking, and cloud gameplay services. Google AdMob and UMP provide ads and privacy choices. Apple, Google Play, and Unity IAP provide platform sign-in or purchase services. These providers may process information in Japan or other countries.',
+    retentionText: 'Account profiles and points settlement receipts currently have no automatic expiry, so progress can be maintained and duplicate rewards prevented. The ten most recent battle records remain in the account profile. Completed, settled match documents expire seven days after their last update; weekly leaderboard snapshots expire after ninety days; guest registration rate-limit records expire after two days. Matches awaiting reward settlement remain available for that processing. Stores and other providers retain data under their own policies. Support emails are retained as needed to handle requests and necessary legal obligations.',
+    securityText: 'Game service requests use HTTPS, and access to account and server data is restricted. No network transmission or storage can be guaranteed completely secure.',
+    rightsTitle: '6. Requests and contact',
+    rightsText: 'To request access, correction, or deletion of an account or related data, or to ask about applicable privacy rights, contact the email address below. We may need to verify account ownership to prevent accidental deletion. Records that must be retained by law and information held by platform stores may require separate handling.',
+    contactLabel: 'Privacy and game support: ',
+    childrenTitle: '7. Children and policy changes',
+    childrenText: 'Follow the age rating shown by your platform store. If you believe a child provided personal information without appropriate guardian consent, contact us. We will update this page and its date when features, processing, or providers change.',
+    providerLinks: 'Provider privacy information',
+  },
+} as const;
+const t = copy[locale];
+---
+
+<PrivacyLayout product={t.name} summary={t.summary} backHref={localizedPath(site.headClash.path, locale)} effectiveDate="2026-10-02">
+  <article id={locale} class="policy-language" lang={htmlLanguages[locale]}>
+    <p class="policy-label">{languageNames[locale]}</p>
+    <h2>{t.heading}</h2>
+    <p>{t.intro}</p>
+    <h3>{t.accountTitle}</h3>
+    <ul>{t.accountItems.map((item) => <li>{item}</li>)}</ul>
+    <h3>{t.purchaseTitle}</h3>
+    <p>{t.purchaseText}</p>
+    <h3>{t.adsTitle}</h3>
+    <p>{t.adsText}</p>
+    <p>{t.adsChoice}</p>
+    <h3>{t.shareTitle}</h3>
+    <p>{t.shareText}</p>
+    <h3>{t.providersTitle}</h3>
+    <p>{t.providersText}</p>
+    <p>{t.retentionText}</p>
+    <p>{t.securityText}</p>
+    <p>{t.providerLinks}: <a href="https://www.microsoft.com/privacy/privacystatement">Microsoft</a> · <a href="https://policies.google.com/privacy">Google</a> · <a href="https://developers.google.com/admob/ios/privacy/data-disclosure">AdMob</a> · <a href="https://www.apple.com/legal/privacy/">Apple</a> · <a href="https://unity.com/legal/privacy-policy">Unity</a>.</p>
+    <h3>{t.rightsTitle}</h3>
+    <p>{t.rightsText}</p>
+    <p>{t.contactLabel}<a href={`mailto:${site.gameSupportEmail}`}>{site.gameSupportEmail}</a></p>
+    <h3>{t.childrenTitle}</h3>
+    <p>{t.childrenText}</p>
+  </article>
+</PrivacyLayout>

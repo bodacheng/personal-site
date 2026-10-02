@@ -9,6 +9,7 @@ const routes = [
   site.game.path,
   site.fxtrade.path,
   '/privacy/',
+  site.headClash.privacyPath,
   site.game.privacyPath,
   site.pocketStriker.privacyPath,
   site.fxtrade.privacyPath,

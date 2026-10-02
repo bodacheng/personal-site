@@ -67,6 +67,8 @@ const copy = {
     closingSecond: '见。',
     closingText: '《飞头大战》正在面向移动端开发，公开下载信息将在准备就绪后公布。',
     backToWorks: '返回全部作品',
+    privacyLabel: '隐私政策',
+    supportLabel: '游戏支持',
   },
   ja: {
     name: 'ヘッドクラッシュ',
@@ -128,6 +130,8 @@ const copy = {
     closingSecond: 'また。',
     closingText: '『ヘッドクラッシュ』はモバイル向けに開発中です。一般公開の情報は準備が整い次第お知らせします。',
     backToWorks: '作品一覧へ戻る',
+    privacyLabel: 'プライバシーポリシー',
+    supportLabel: 'ゲームサポート',
   },
   en: {
     name: 'Head Clash',
@@ -189,6 +193,8 @@ const copy = {
     closingSecond: 'next turn.',
     closingText: 'Head Clash is in development for mobile. Public download details will be announced when ready.',
     backToWorks: 'Back to all work',
+    privacyLabel: 'Privacy policy',
+    supportLabel: 'Game support',
   },
 } as const;
 const t = copy[locale];
@@ -211,7 +217,7 @@ const homeWorksPath = `${localizedPath('/', locale)}#works`;
     description: t.description,
     inLanguage: locale === 'zh' ? 'zh-CN' : locale,
     url: new URL(gamePath, site.url),
-    image: new URL('/head-clash/icon.jpg', site.url),
+    image: new URL('/head-clash/icon.png', site.url),
     gamePlatform: ['iOS', 'Android'],
     operatingSystem: ['iOS', 'Android'],
     author: { '@type': 'Organization', name: site.name },
@@ -225,7 +231,7 @@ const homeWorksPath = `${localizedPath('/', locale)}#works`;
         <div class="shell hc-hero-grid">
           <div class="hc-hero-copy">
             <div class="hc-lockup">
-              <img src="/head-clash/icon.jpg" alt={t.iconAlt} width="80" height="80" />
+              <img src="/head-clash/icon.png" alt={t.iconAlt} width="80" height="80" />
               <div><span>{t.presents}</span><strong>HEAD CLASH</strong></div>
             </div>
             <p class="hc-eyebrow">{t.eyebrow}</p>
@@ -332,11 +338,11 @@ const homeWorksPath = `${localizedPath('/', locale)}#works`;
 
       <section class="hc-close" aria-labelledby="hc-close-title">
         <div class="shell hc-close-grid">
-          <img src="/head-clash/icon.jpg" alt="" width="140" height="140" loading="lazy" />
+          <img src="/head-clash/icon.png" alt="" width="140" height="140" loading="lazy" />
           <div>
             <p class="hc-index">{t.closingIndex}</p>
             <h2 id="hc-close-title">{t.closingFirst}<br />{t.closingSecond}</h2>
-            <p>{t.closingText}</p>
+            <p>{t.closingText}<span class="hc-help"><a href={localizedPath(site.headClash.privacyPath, locale)}>{t.privacyLabel}</a><a href={`mailto:${site.gameSupportEmail}`}>{t.supportLabel}</a></span></p>
           </div>
           <a href={homeWorksPath}>{t.backToWorks} <span aria-hidden="true">↗</span></a>
         </div>
@@ -436,6 +442,8 @@ const homeWorksPath = `${localizedPath('/', locale)}#works`;
   .hc-close-grid > img { width: 140px; height: 140px; border-radius: 23px; }
   .hc-close h2 { margin-top: 14px; }
   .hc-close-grid > div > p:last-child { max-width: 480px; margin-top: 15px; color: #576a5d; font-size: .85rem; line-height: 1.8; }
+  .hc-help { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; }
+  .hc-help a { text-decoration: underline; text-underline-offset: 4px; }
   .hc-close-grid > a { align-self: end; display: flex; min-width: 180px; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid #29463b; color: #29463b; font-size: .8rem; font-weight: 780; }
   .hc-close-grid > a:hover { color: #a44d36; border-color: #a44d36; }
 

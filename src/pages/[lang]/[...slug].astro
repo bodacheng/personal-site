@@ -3,6 +3,7 @@ import HeadClashPage from '../projects/head-clash/index.astro';
 import GemWarriorPage from '../projects/gem-warrior/index.astro';
 import FxTradePage from '../projects/fxtrade/index.astro';
 import PrivacyHubPage from '../privacy/index.astro';
+import HeadClashPrivacyPage from '../privacy/head-clash/index.astro';
 import GemWarriorPrivacyPage from '../privacy/gem-warrior/index.astro';
 import PocketStrikerPrivacyPage from '../privacy/pocket-striker/index.astro';
 import FxTradePrivacyPage from '../privacy/fxtrade/index.astro';
@@ -13,6 +14,7 @@ export function getStaticPaths() {
     'projects/gem-warrior',
     'projects/fxtrade',
     'privacy',
+    'privacy/head-clash',
     'privacy/gem-warrior',
     'privacy/pocket-striker',
     'privacy/fxtrade',
@@ -27,6 +29,7 @@ const slug = Astro.params.slug;
 {slug === 'projects/gem-warrior' && <GemWarriorPage />}
 {slug === 'projects/fxtrade' && <FxTradePage />}
 {slug === 'privacy' && <PrivacyHubPage />}
+{slug === 'privacy/head-clash' && <HeadClashPrivacyPage />}
 {slug === 'privacy/gem-warrior' && <GemWarriorPrivacyPage />}
 {slug === 'privacy/pocket-striker' && <PocketStrikerPrivacyPage />}
 {slug === 'privacy/fxtrade' && <FxTradePrivacyPage />}

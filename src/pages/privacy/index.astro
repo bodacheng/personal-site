@@ -14,11 +14,14 @@ const copy = {
     headingFirst: '透明说明每件产品',
     headingSecond: '如何处理信息。',
     intro: '每项产品的功能与数据流不同，因此分别提供对应政策。',
-    gameCategory: '01 · 游戏',
+    headClashCategory: '01 · 游戏',
+    headClashName: '飞头大战',
+    headClashSummary: '昵称与账户、云端进度、战绩、排行榜、广告及隐私请求的说明。',
+    gameCategory: '02 · 游戏',
     gameSummary: '游戏账户、设备信息、购买、广告及支持相关说明。',
-    pocketCategory: '02 · 游戏',
+    pocketCategory: '03 · 游戏',
     pocketSummary: '账户与游戏进度、购买、广告、诊断及 AI 故事功能的说明。',
-    financeCategory: '03 · 金融工具',
+    financeCategory: '04 · 金融工具',
     financeSummary: 'AI 分析输入、市场数据、本地存储及服务提供商相关说明。',
     viewPolicy: '查看政策 →',
   },
@@ -29,11 +32,14 @@ const copy = {
     headingFirst: '製品ごとの情報の扱いを',
     headingSecond: 'わかりやすく。',
     intro: '製品ごとに機能やデータの取扱いが異なるため、それぞれのポリシーをご用意しています。',
-    gameCategory: '01 · ゲーム',
+    headClashCategory: '01 · ゲーム',
+    headClashName: 'ヘッドクラッシュ',
+    headClashSummary: 'ニックネーム、アカウント、クラウド保存、対戦履歴、ランキング、広告、プライバシーに関する請求について説明します。',
+    gameCategory: '02 · ゲーム',
     gameSummary: 'ゲームアカウント、端末情報、購入、広告、サポートに関する説明です。',
-    pocketCategory: '02 · ゲーム',
+    pocketCategory: '03 · ゲーム',
     pocketSummary: 'アカウント、プレイデータ、購入、広告、診断、AI ストーリー機能について説明します。',
-    financeCategory: '03 · 金融ツール',
+    financeCategory: '04 · 金融ツール',
     financeSummary: 'AI 分析の入力情報、市場データ、端末内保存、サービス提供事業者に関する説明です。',
     viewPolicy: 'ポリシーを見る →',
   },
@@ -44,11 +50,14 @@ const copy = {
     headingFirst: 'Privacy for',
     headingSecond: 'every product.',
     intro: 'Each product has different features and data flows, so each has its own policy.',
-    gameCategory: '01 · GAME',
+    headClashCategory: '01 · GAME',
+    headClashName: 'Head Clash',
+    headClashSummary: 'Details about nicknames, accounts, cloud progress, battle history, leaderboards, ads, and privacy requests.',
+    gameCategory: '02 · GAME',
     gameSummary: 'Details about game accounts, device information, purchases, ads, and support.',
-    pocketCategory: '02 · GAME',
+    pocketCategory: '03 · GAME',
     pocketSummary: 'Details about accounts, gameplay, purchases, ads, diagnostics, and AI stories.',
-    financeCategory: '03 · FINANCE TOOL',
+    financeCategory: '04 · FINANCE TOOL',
     financeSummary: 'Details about AI analysis inputs, market data, local storage, and service providers.',
     viewPolicy: 'View policy →',
   },
@@ -69,6 +78,12 @@ const t = copy[locale];
       </section>
       <section class="privacy-list">
         <div class="shell">
+          <a href={localizedPath(site.headClash.privacyPath, locale)}>
+            <span>{t.headClashCategory}</span>
+            <img src="/head-clash/icon.png" alt="" width="72" height="72" />
+            <div><h2>{t.headClashName}</h2><p>{t.headClashSummary}</p></div>
+            <strong>{t.viewPolicy}</strong>
+          </a>
           <a href={localizedPath(site.game.privacyPath, locale)}>
             <span>{t.gameCategory}</span>
             <img src="/game/app-icon.jpg" alt="" width="72" height="72" />
