@@ -14,7 +14,8 @@ export const site = {
       '先选择走位，再同时弹射角色的头部。利用石柱与边墙反弹，绕开颈部防守，击中对手身体，赢下同步回合制物理对决。',
     path: '/projects/head-clash/',
     privacyPath: '/privacy/head-clash/',
-    status: '开发中',
+    status: 'iOS 已上架',
+    iosUrl: 'https://apps.apple.com/jp/app/id6811320553',
   },
   game: {
     name: '魔晶闘士-無限格闘戦争',
@@ -56,6 +57,7 @@ export const site = {
   },
   pocketStriker: {
     name: 'Pocket Striker',
+    path: '/projects/pocket-striker/',
     privacyPath: '/privacy/pocket-striker/',
   },
   fxtrade: {

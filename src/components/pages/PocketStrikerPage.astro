@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import PocketStrikerSpotlight from '../PocketStrikerSpotlight.astro';
+import { site } from '../../config/site';
+import { pocketStrikerCopy } from '../../content/pocketStriker';
+import { localeFromPath, localizedPath } from '../../i18n';
+
+const locale = localeFromPath(Astro.url.pathname);
+const t = pocketStrikerCopy[locale];
+const emailHref = `mailto:${site.gameSupportEmail}?subject=${encodeURIComponent('Pocket Striker Support')}`;
+---
+
+<BaseLayout title={`Pocket Striker｜${site.name}`} description={t.description}>
+  <div id="top" class="pocket-page">
+    <Header context="game" />
+    <main id="main">
+      <PocketStrikerSpotlight />
+      <section class="pocket-features" aria-labelledby="pocket-features-title">
+        <div class="shell">
+          <p class="section-label">{t.featuresEyebrow}</p>
+          <h2 id="pocket-features-title">{t.featuresTitle}</h2>
+          <div class="pocket-feature-grid">
+            {t.features.map((feature, index) => <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{feature.title}</h3>
+              <p>{feature.text}</p>
+            </article>)}
+          </div>
+        </div>
+      </section>
+      <section id="support" class="pocket-support" aria-labelledby="pocket-support-title">
+        <div class="shell pocket-support-inner">
+          <div>
+            <p class="section-label">{t.supportEyebrow}</p>
+            <h2 id="pocket-support-title">{t.supportTitle}</h2>
+            <p>{t.supportIntro}</p>
+            <p>{t.supportDetails}</p>
+          </div>
+          <div class="pocket-contact">
+            <a class="email-action" href={emailHref}>{t.emailAction} <span aria-hidden="true">↗</span></a>
+            <a class="email-address" href={emailHref}>{site.gameSupportEmail}</a>
+            <p>{t.emailHint}</p>
+            <div class="privacy-note">
+              <p>{t.privacyText}</p>
+              <a href={localizedPath(site.pocketStriker.privacyPath, locale)}>{t.privacy} →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .pocket-page { background: #10151b; }
+  .section-label { color: #85a7a8; font-size: .63rem; font-weight: 760; letter-spacing: .14em; }
+  .pocket-features { padding-block: 90px 100px; background: #edf0eb; color: #11151c; }
+  .pocket-features .section-label { color: #416765; }
+  h2 { margin-top: 24px; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1.2; letter-spacing: -.045em; }
+  .pocket-feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 48px; border-top: 1px solid #b8c3bd; border-left: 1px solid #b8c3bd; }
+  article { padding: 34px; border-right: 1px solid #b8c3bd; border-bottom: 1px solid #b8c3bd; }
+  article > span { color: #416765; font-size: .63rem; letter-spacing: .16em; }
+  h3 { margin-top: 22px; font-size: 1.35rem; line-height: 1.4; }
+  article p { margin-top: 16px; color: #48544f; font-size: .92rem; line-height: 1.9; }
+  .pocket-support { padding-block: 96px; scroll-margin-top: 32px; border-top: 1px solid #384750; }
+  .pocket-support-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: 80px; }
+  .pocket-support h2 { color: #e6b768; font-size: clamp(2rem, 3.2vw, 3rem); }
+  .pocket-support-inner > div > p:not(.section-label) { margin-top: 24px; color: #b1bbc4; font-size: .92rem; line-height: 1.9; }
+  .pocket-contact { align-self: center; min-width: 0; }
+  .email-action { display: inline-flex; justify-content: space-between; gap: 40px; min-height: 48px; padding: 16px 22px; background: #e6b768; color: #11151c; font-size: .83rem; font-weight: 700; }
+  .email-action:hover { background: #f4cd8d; }
+  .email-address { display: block; margin-top: 24px; overflow-wrap: anywhere; color: #f7f7f2; font-size: clamp(1rem, 2vw, 1.45rem); text-decoration: underline; text-underline-offset: 5px; }
+  .pocket-contact > p, .privacy-note p { color: #b1bbc4; font-size: .8rem; line-height: 1.8; margin-top: 16px; }
+  .privacy-note { border-top: 1px solid #384750; margin-top: 28px; padding-top: 12px; }
+  .privacy-note a { display: inline-block; margin-top: 12px; color: #e6b768; font-size: .85rem; }
+  @media (max-width: 900px) { .pocket-support-inner { gap: 36px; } }
+  @media (max-width: 700px) {
+    .pocket-features, .pocket-support { padding-block: 64px; }
+    .pocket-feature-grid, .pocket-support-inner { grid-template-columns: 1fr; }
+    article { padding: 28px 24px; }
+    .pocket-support-inner { gap: 36px; }
+  }
+</style>

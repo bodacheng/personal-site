@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import PocketStrikerSpotlight from '../components/PocketStrikerSpotlight.astro';
 import { site } from '../config/site';
 import { localeFromPath, localizedPath } from '../i18n';
 
@@ -9,21 +10,21 @@ const locale = localeFromPath(Astro.url.pathname);
 const c = {
   zh: {
     eyebrow: '独立开发 · 东京', intro: '独立开发游戏与实用应用。每个项目围绕自己的用户、目的和使用场景，采用完全独立的产品语言。', category: '选择作品类别', games: '游戏', apps: '应用', worksEyebrow: '精选作品', works: '作品', worksIntro: '以下项目分别进入各自的设计世界。',
-    headStatus: '开发中', headDescription: site.headClash.description, headFeatures: '游戏特色', headTags: ['同步规划与出击', '反弹路线博弈', 'AI · 在线 1 对 1'], headLink: '了解这款游戏', headAvailability: '移动端开发中，尚未开放公开下载。', headIconAlt: '飞头大战游戏图标', headHeroAlt: '飞头大战的两名角色在海岛擂台上伸长脖子相撞的插画', headGameplayAlt: '飞头大战实际游戏画面：双方在圆形擂台同时出击',
+    headStatus: 'iOS 已上架', headDescription: site.headClash.description, headFeatures: '游戏特色', headTags: ['同步规划与出击', '反弹路线博弈', 'AI · 在线 1 对 1'], headLink: '了解这款游戏', headAvailability: 'iOS 版现已上架 App Store。', headIconAlt: '飞头大战游戏图标', headHeroAlt: '飞头大战的两名角色在海岛擂台上伸长脖子相撞的插画', headGameplayAlt: '飞头大战实际游戏画面：双方在圆形擂台同时出击',
     gameStatus: '现已上线', gameDescription: site.game.description, gameFeatures: '游戏特点', gameTags: ['技能宝石构筑', '真实物理碰撞', '竞技场 PvP'], gameLink: '进入游戏项目页', gameImageAlt: '魔晶闘士角色在竞技场中进行物理格斗', gameIconAlt: '魔晶闘士游戏图标', download: '下载游戏', apple: '从 App Store 下载', google: '从 Google Play 下载', privacy: '隐私政策',
     fxStatus: '准备上线', fxDescription: site.fxtrade.description, fxLink: '进入应用项目页', fxNote: '信息与决策辅助工具 · 不连接券商账户 · 不代替用户交易', fxIconAlt: 'USD/JPY Advice 应用图标', fxInterfaceAlt: 'USD/JPY Advice 应用界面', fxOverviewAlt: 'USD/JPY 实时行情与技术指标界面', fxAdviceAlt: 'AI 交易建议与风险信息界面（简体中文）',
     aboutTitle1: '独立完成，', aboutTitle2: '长期维护。', about: 'HOTARU STUDIO 负责从原型、视觉和开发到发布后的维护。不同类别的项目保持各自的目标与设计体系，同时共享对可用性、透明说明和隐私保护的基本要求。', contact: '项目咨询与支持', fxMetricLabels: ['市场', '指标', '语言'], aboutLabels: ['所在地', '平台', '联系'],
   },
   ja: {
     eyebrow: 'インディー開発 · 東京', intro: 'ゲームと実用アプリを独立して開発しています。ユーザー、目的、利用場面に合わせて、各プロジェクトに固有の体験と言葉を設計します。', category: '作品カテゴリーを選択', games: 'ゲーム', apps: 'アプリ', worksEyebrow: '主な作品', works: '作品', worksIntro: 'それぞれ異なるデザインの世界を持つプロジェクトです。',
-    headStatus: '開発中', headDescription: '移動先を選んだあと、両者が同時に頭を発射。石柱や壁で跳ね返し、首のガードをかわして相手の体に当てる、同時進行型の物理対戦ゲームです。', headFeatures: 'ゲームの特徴', headTags: ['同時に計画して攻撃', '反射ルートの駆け引き', 'AI・オンライン 1 対 1'], headLink: 'ゲームの詳細を見る', headAvailability: 'モバイル版を開発中。一般向けのダウンロードはまだありません。', headIconAlt: 'Head Clash のゲームアイコン', headHeroAlt: '島のリングで首を伸ばして衝突する二人のキャラクターのイラスト', headGameplayAlt: '円形リングで両者が同時に攻撃する Head Clash のゲーム画面',
+    headStatus: 'iOS で配信中', headDescription: '移動先を選んだあと、両者が同時に頭を発射。石柱や壁で跳ね返し、首のガードをかわして相手の体に当てる、同時進行型の物理対戦ゲームです。', headFeatures: 'ゲームの特徴', headTags: ['同時に計画して攻撃', '反射ルートの駆け引き', 'AI・オンライン 1 対 1'], headLink: 'ゲームの詳細を見る', headAvailability: 'iOS 版を App Store で配信中。', headIconAlt: 'Head Clash のゲームアイコン', headHeroAlt: '島のリングで首を伸ばして衝突する二人のキャラクターのイラスト', headGameplayAlt: '円形リングで両者が同時に攻撃する Head Clash のゲーム画面',
     gameStatus: '配信中', gameDescription: 'スキルジェムを組み合わせて自分だけの戦闘スタイルを構築。物理演算による爽快なバトルとアリーナ PvP で相手を吹き飛ばそう。iOS・Android で配信中。', gameFeatures: 'ゲームの特徴', gameTags: ['スキルジェムの構築', '物理演算によるバトル', 'アリーナ PvP'], gameLink: 'ゲームの詳細を見る', gameImageAlt: 'アリーナで物理バトルを繰り広げる魔晶闘士のキャラクター', gameIconAlt: '魔晶闘士のゲームアイコン', download: 'ゲームをダウンロード', apple: 'App Store からダウンロード', google: 'Google Play からダウンロード', privacy: 'プライバシーポリシー',
     fxStatus: '公開準備中', fxDescription: 'USD/JPY のリアルタイム相場、テクニカル指標、建玉、証拠金条件を一つの画面にまとめ、AI 分析による構造化された判断材料を提供します。', fxLink: 'アプリの詳細を見る', fxNote: '情報・判断支援ツール · 証券会社の口座には接続しません · 取引を代行しません', fxIconAlt: 'USD/JPY Advice のアプリアイコン', fxInterfaceAlt: 'USD/JPY Advice のアプリ画面', fxOverviewAlt: 'USD/JPY の相場とテクニカル指標を示す画面', fxAdviceAlt: 'AI 分析とリスク情報の画面（簡体字中国語版）',
     aboutTitle1: '一人でつくり、', aboutTitle2: '長く育てる。', about: 'HOTARU STUDIO は試作、ビジュアル、開発から公開後の保守まで手がけます。各分野のプロジェクトは固有の目標とデザインを持ち、使いやすさ、明確な説明、プライバシー保護を共通の基準としています。', contact: 'プロジェクトのご相談・サポート', fxMetricLabels: ['市場', '指標', '言語'], aboutLabels: ['拠点', '対応環境', '連絡先'],
   },
   en: {
     eyebrow: 'INDEPENDENT DEVELOPMENT · TOKYO', intro: 'We independently develop games and practical apps. Each project has its own experience and visual language, shaped around its users, purpose, and context.', category: 'Choose a category', games: 'Games', apps: 'Apps', worksEyebrow: 'SELECTED WORKS', works: 'Work', worksIntro: 'Each project opens into its own design world.',
-    headStatus: 'In development', headDescription: 'Choose your movement, then launch both fighters’ heads at once. Bank shots off pillars and walls, slip past neck defenses, and hit your opponent’s body in a simultaneous physics duel.', headFeatures: 'Game features', headTags: ['Plan and strike together', 'Ricochet route tactics', 'AI · Online 1v1'], headLink: 'Explore the game', headAvailability: 'In development for mobile. Public downloads are not available yet.', headIconAlt: 'Head Clash game icon', headHeroAlt: 'Illustration of two fighters stretching their necks and colliding in an island arena', headGameplayAlt: 'Head Clash gameplay with both fighters attacking in a circular arena',
+    headStatus: 'Available on iOS', headDescription: 'Choose your movement, then launch both fighters’ heads at once. Bank shots off pillars and walls, slip past neck defenses, and hit your opponent’s body in a simultaneous physics duel.', headFeatures: 'Game features', headTags: ['Plan and strike together', 'Ricochet route tactics', 'AI · Online 1v1'], headLink: 'Explore the game', headAvailability: 'Available now on the App Store for iOS.', headIconAlt: 'Head Clash game icon', headHeroAlt: 'Illustration of two fighters stretching their necks and colliding in an island arena', headGameplayAlt: 'Head Clash gameplay with both fighters attacking in a circular arena',
     gameStatus: 'Available now', gameDescription: 'Combine skill gems to build a fighting style of your own. Launch opponents across physics-driven battles and arena PvP. Available on iOS and Android.', gameFeatures: 'Game features', gameTags: ['Build with skill gems', 'Physics-driven combat', 'Arena PvP'], gameLink: 'Explore the game', gameImageAlt: 'Gem Warrior characters fighting in a physics-based arena', gameIconAlt: 'Gem Warrior game icon', download: 'Download the game', apple: 'Download on the App Store', google: 'Get it on Google Play', privacy: 'Privacy policy',
     fxStatus: 'Coming soon', fxDescription: 'Bring live USD/JPY quotes, technical indicators, positions, and margin conditions into one view, with structured AI analysis to support your decisions.', fxLink: 'Explore the app', fxNote: 'Information and decision support · No broker account connection · No trades placed for you', fxIconAlt: 'USD/JPY Advice app icon', fxInterfaceAlt: 'USD/JPY Advice app interface', fxOverviewAlt: 'USD/JPY live rates and technical indicators screen', fxAdviceAlt: 'AI analysis and risk information screen (Simplified Chinese version)',
     aboutTitle1: 'Built independently.', aboutTitle2: 'Maintained for the long run.', about: 'HOTARU STUDIO handles prototypes, visuals, development, and ongoing maintenance. Every product has its own goals and design system, with shared standards for usability, clear explanations, and privacy.', contact: 'Project inquiries and support', fxMetricLabels: ['MARKET', 'INDICATORS', 'LANGUAGE'], aboutLabels: ['BASE', 'PLATFORMS', 'CONTACT'],
@@ -64,7 +65,7 @@ const c = {
           <div class="project-category"><span>01 / GAME</span><strong>{c.headStatus}</strong></div>
           <div class="head-clash-title-lockup">
             <img src="/head-clash/icon.png" alt={c.headIconAlt} width="1024" height="1024" />
-            <p>HEAD CLASH<br /><span>iOS · Android</span></p>
+            <p>HEAD CLASH<br /><span>iOS</span></p>
           </div>
           <p class="head-clash-product-kicker">SIMULTANEOUS PHYSICS DUEL</p>
           <h2 id="home-head-clash-title">{locale === 'zh' ? <>飞头<span>大战</span></> : <>HEAD <span>CLASH</span></>}</h2>
@@ -111,12 +112,14 @@ const c = {
         </div>
       </section>
 
+      <PocketStrikerSpotlight compact />
+
       <div class="project-separator" aria-hidden="true"><span>END / GAME</span><span>NEXT / APPLICATION</span></div>
 
       <section id="fx-project" class="home-fx-project" aria-labelledby="home-fx-title">
         <div class="shell home-fx-inner">
           <div class="fx-project-copy">
-            <div class="project-category"><span>03 / APPLICATION</span><strong>{c.fxStatus}</strong></div>
+            <div class="project-category"><span>04 / APPLICATION</span><strong>{c.fxStatus}</strong></div>
             <div class="fx-title-lockup">
               <img src="/fxtrade/app-icon.png" alt={c.fxIconAlt} width="96" height="96" />
               <p>FXTRADE PROJECT<br /><span>FOR iOS</span></p>
@@ -151,7 +154,7 @@ const c = {
 
       <section id="studio" class="portfolio-about" aria-labelledby="about-title">
         <div class="shell portfolio-about-inner">
-          <p>04 / STUDIO</p>
+          <p>05 / STUDIO</p>
           <div>
             <h2 id="about-title">{c.aboutTitle1}<br />{c.aboutTitle2}</h2>
             <p>{c.about}</p>
